@@ -1,21 +1,14 @@
 package com.example.beecar.Model;
 
-public class User {
+public class Driver {
     int id;
     String user_name;
     String password;
     String full_name;
-    int position;
+    int status_driver;
+    int user_id;
 
-    public User(int id, String user_name, String password, String full_name, int position) {
-        this.id = id;
-        this.user_name = user_name;
-        this.password = password;
-        this.full_name = full_name;
-        this.position = position;
-    }
-
-    public User() {
+    public Driver() {
     }
 
     public int getId() {
@@ -50,11 +43,19 @@ public class User {
         this.full_name = full_name;
     }
 
-    public int getPosition() {
-        return position;
+    public int getStatus_driver() {
+        return status_driver;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public void setStatus_driver(int status_driver) {
+        this.status_driver = status_driver;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }
