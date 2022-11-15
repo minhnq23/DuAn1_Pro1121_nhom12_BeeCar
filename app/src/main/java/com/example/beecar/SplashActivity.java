@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
     ImageView imageView;
-    TextView tvSplash;
+    TextView tv_title;
 
 
     @Override
@@ -23,17 +23,17 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
            imageView = findViewById(R.id.imageView);
-           tvSplash = findViewById(R.id.tvSplash);
+           tv_title = findViewById(R.id.tv_title_lg);
         Animation animationImg = AnimationUtils.loadAnimation(this,R.anim.anim_logo_splash_screen);
         imageView.startAnimation(animationImg);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(tvSplash,"translationY",-100f,0f);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(tv_title,"translationY",-100f,0f);
         animator.setDuration(2000);
         animator.setRepeatCount(0);
         animator.start();
         Animation animationTitle = AnimationUtils.loadAnimation(this,R.anim.anim_title_splash_screen);
-            tvSplash.startAnimation(animationTitle);
+            tv_title.startAnimation(animationTitle);
            Typeface font = Typeface.createFromAsset(getAssets(),"fonts/FredokaOne-Regular.ttf");
-           tvSplash.setTypeface(font);
+           tv_title.setTypeface(font);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
