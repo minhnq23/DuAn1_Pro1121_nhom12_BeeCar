@@ -19,7 +19,9 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/user"></de.hdodenhof.circleimageview.CircleImageView>
+                android:src="@drawable/user">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
