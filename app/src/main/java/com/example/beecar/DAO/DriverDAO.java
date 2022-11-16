@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.beecar.Database.MyDbHelper;
+import com.example.beecar.Model.Client;
 import com.example.beecar.Model.Driver;
 import com.example.beecar.Model.User;
 
@@ -52,6 +53,23 @@ public class DriverDAO {
         try {
             long res = database.insert(TABLE_NAME,null,contentValues);
             if(res<0){
+                return -1;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
+    public int update(Driver driver){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("idDriver",driver.getIdUser());
+        contentValues.put("user_name",driver.getUser_name());
+        contentValues.put("password",driver.getPassword());
+        contentValues.put("full_name",driver.getFull_name());
+        contentValues.put("status_driver",driver.getStatus_driver());
+        try {
+            if(database.update(TABLE_NAME, contentValues, "idDriver"+"=?", new String[]{"idDriver"})==-1){
                 return -1;
             }
         }catch (Exception e){
