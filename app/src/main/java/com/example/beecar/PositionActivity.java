@@ -57,10 +57,14 @@ public class PositionActivity extends AppCompatActivity {
         //start activity
 
     btn_client.setOnClickListener(view -> {
-        startActivity(new Intent(this, RegisterDriverActivity.class));
+        Intent i_client = new Intent(this, RegisterClientActivity.class);
+        i_client.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i_client);
     });
         btn_driver.setOnClickListener(view -> {
-            startActivity(new Intent(this, RegisterClientActivity.class));
+            Intent i_driver =new Intent(this,RegisterDriverActivity.class );
+            i_driver.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i_driver);
         });
 
     }
@@ -69,8 +73,6 @@ public class PositionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == android.R.id.home){
             finish();
-
-
         }
         return super.onOptionsItemSelected(item);
     }
