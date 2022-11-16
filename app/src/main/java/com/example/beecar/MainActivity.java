@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 //    MyDbHelper myDbHelper;
     TextView tvRegister;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +37,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
         tvRegister.setOnClickListener(view -> {
-            startActivity(new Intent(this,PositionActivity.class));
+            Intent i = new Intent(this,PositionActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+
         });
+
+
 
     }
 }
