@@ -1,22 +1,31 @@
 package com.example.beecar.Model;
 
 public class Driver {
-    int id;
-    String user_name;
-    String password;
-    String full_name;
-    int status_driver;
-    int user_id;
+    private   String idDriver;
+    private String user_name;
+    private String password;
+    private String full_name;
+    private String status_driver;
+    private String idUser;
 
     public Driver() {
     }
 
-    public int getId() {
-        return id;
+    public Driver(String idDriver, String user_name, String password, String full_name, String status_driver, String idUser) {
+        this.idDriver = idDriver;
+        this.user_name = user_name;
+        this.password = password;
+        this.full_name = full_name;
+        this.status_driver = status_driver;
+        this.idUser = idUser;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getIdDriver() {
+        return idDriver;
+    }
+
+    public void setIdDriver(String idDriver) {
+        this.idDriver = idDriver;
     }
 
     public String getUser_name() {
@@ -43,19 +52,19 @@ public class Driver {
         this.full_name = full_name;
     }
 
-    public int getStatus_driver() {
+    public String getStatus_driver() {
         return status_driver;
     }
 
-    public void setStatus_driver(int status_driver) {
+    public void setStatus_driver(String status_driver) {
         this.status_driver = status_driver;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getIdUser() {
+        return idUser;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 }
