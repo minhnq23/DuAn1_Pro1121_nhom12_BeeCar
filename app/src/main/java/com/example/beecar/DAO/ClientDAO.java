@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Client;
 import com.example.beecar.Model.Driver;
+import com.example.beecar.Model.User;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,22 @@ public class ClientDAO {
         try {
             long res = database.insert(TABLE_NAME,null,contentValues);
             if(res<0){
+                return -1;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
+    public int update(Client client){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("idCilent",client.getIdUser());
+        contentValues.put("user_name",client.getUser_name());
+        contentValues.put("password",client.getPassword());
+        contentValues.put("full_name",client.getFull_name());
+        try {
+            if(database.update(TABLE_NAME, contentValues, "idCilent"+"=?", new String[]{"idCilent"})==-1){
                 return -1;
             }
         }catch (Exception e){
