@@ -24,9 +24,10 @@ public class PositionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         btn_client = findViewById(R.id.btn_client);
         btn_driver = findViewById(R.id.btn_driver);
-
 
         //effect
     btn_client.setOnTouchListener(new View.OnTouchListener() {
