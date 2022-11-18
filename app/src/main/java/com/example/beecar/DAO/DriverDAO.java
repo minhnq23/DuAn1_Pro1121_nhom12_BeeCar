@@ -8,18 +8,16 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Driver;
 import com.example.beecar.Model.User;
-import com.example.beecar.Model.Vehicles;
 
 import java.util.ArrayList;
 
 public class DriverDAO {
-
-    MyDbHelper myDbHelper;
+    private MyDbHelper myDbHelper;
 
 
     public DriverDAO(Context context) {
         myDbHelper = new MyDbHelper(context);
-        myDbHelper.getWritableDatabase();
+         myDbHelper.getWritableDatabase();
     }
 
     public ArrayList<Driver> selectAll(){
@@ -71,8 +69,5 @@ public class DriverDAO {
         int row = db.update(Driver.TB_Name,values,"id=?", new String[]{objD.getId()+""});
         return row>0;
     }
-
-
-
 
 }
