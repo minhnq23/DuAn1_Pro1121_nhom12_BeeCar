@@ -2,13 +2,30 @@ package com.example.beecar.Model;
 
 public class Receipt {
     int id;
+    String name_client;
+    String name_driver;
     String oder_time;
     String start_time;
     String end_time;
+    int status_driver;
     int status;
     int total;
     int client_id;
+    int driver_id;
     int vehicles_id;
+    public static final String TB_name ="tb_receipt";
+    public static final String COL_name_client ="name_client";
+    public static final String COL_name_driver ="name_driver";
+    public static final String COL_oder ="oder_time";
+    public static final String COL_start ="start_time";
+    public static final String COL_end ="end_time";
+    public static final String COL_status_driver ="status_driver";
+    public static final String COL_status ="status_receipt";
+    public static final String COL_total ="total";
+    public static final String COL_client_id ="client_id";
+    public static final String COL_driver_id ="driver_id";
+    public static final String COL_vehicles_id ="vehicles_id";
+
 
     public Receipt() {
     }
@@ -19,6 +36,22 @@ public class Receipt {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName_client() {
+        return name_client;
+    }
+
+    public void setName_client(String name_client) {
+        this.name_client = name_client;
+    }
+
+    public String getName_driver() {
+        return name_driver;
+    }
+
+    public void setName_driver(String name_driver) {
+        this.name_driver = name_driver;
     }
 
     public String getOder_time() {
@@ -43,6 +76,14 @@ public class Receipt {
 
     public void setEnd_time(String end_time) {
         this.end_time = end_time;
+    }
+
+    public int getStatus_driver() {
+        return status_driver;
+    }
+
+    public void setStatus_driver(int status_driver) {
+        this.status_driver = status_driver;
     }
 
     public int getStatus() {
@@ -75,5 +116,13 @@ public class Receipt {
 
     public void setVehicles_id(int vehicles_id) {
         this.vehicles_id = vehicles_id;
+    }
+
+    public int getDriver_id() {
+        return driver_id;
+    }
+
+    public void setDriver_id(int driver_id) {
+        this.driver_id = driver_id;
     }
 }

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.activity.OnBackPressedCallback;
+
 import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Driver;
 import com.example.beecar.Model.User;
@@ -38,7 +40,6 @@ public class DriverDAO {
 
                 list.add(objD);
                 cursor.moveToNext();
-
             }
         }
         cursor.close();
@@ -69,5 +70,6 @@ public class DriverDAO {
         int row = db.update(Driver.TB_Name,values,"id=?", new String[]{objD.getId()+""});
         return row>0;
     }
+
 
 }
