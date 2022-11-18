@@ -57,6 +57,7 @@ public class UserDAO {
         values.put(User.COL_full_name,objU.getFull_name());
         values.put(User.COL_position,objU.getPosition());
         int row = db.update(User.TB_Name,values,"id=?", new String[]{objU.getId()+""});
+
         return row>0;
     }
 
