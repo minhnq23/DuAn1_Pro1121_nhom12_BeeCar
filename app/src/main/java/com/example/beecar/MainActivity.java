@@ -1,13 +1,16 @@
 package com.example.beecar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.beecar.Database.MyDbHelper;
 
@@ -50,4 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-}
+    int count = 0;
+    @Override
+    public void onBackPressed() {
+        count++;
+        Toast.makeText(this, "ấn 2 lần để thoát", Toast.LENGTH_SHORT).show();
+            if (count == 2) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+            }
+
+        }
+    }
