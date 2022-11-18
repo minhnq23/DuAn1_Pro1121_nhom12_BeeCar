@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         count++;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                count = 0;
+            }
+        },3000);
         Toast.makeText(this, "ấn 2 lần để thoát", Toast.LENGTH_SHORT).show();
             if (count == 2) {
                 moveTaskToBack(true);
