@@ -4,17 +4,20 @@ public class Vehicles {
     int id;
     int image;
     String name_car;
-    int count_muon;
     int price_time;
     int price_date;
+    int count_muon;
+    String day_bd;
     int id_category;
     public  static final String TB_name = "tb_vehicles";
     public  static final String COL_id = "id";
     public  static final String COL_image_car = "image_car";
     public  static final String COL_name_car = "name_car";
-    public  static final String COL_count_muon = "count_muon";
+
     public  static final String COL_price_time = "price_time";
     public  static final String COL_price_date = "price_date";
+    public  static final String COL_count_muon = "count_muon";
+    public  static final String COL_day_bd = "day_bd";
     public  static final String COL_id_category = "id_category";
 
     public Vehicles() {
@@ -26,6 +29,14 @@ public class Vehicles {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDay_bd() {
+        return day_bd;
+    }
+
+    public void setDay_bd(String day_bd) {
+        this.day_bd = day_bd;
     }
 
     public int getImage() {

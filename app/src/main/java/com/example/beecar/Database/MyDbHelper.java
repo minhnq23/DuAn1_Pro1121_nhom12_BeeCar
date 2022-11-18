@@ -20,13 +20,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
         //car
         String tb_category = "create table if not exists tb_category (id integer primary key autoincrement,name_category string)";
         sqLiteDatabase.execSQL(tb_category);
-        String tb_vehicles = "create table if not exists tb_vehicles (id integer primary key autoincrement,image_car int,name_car string,price_time int ,price_date int,count_muon int , id_category references tb_category(id)) ";
+        String tb_vehicles = "create table if not exists tb_vehicles (id integer primary key autoincrement,image_car int,name_car string,price_time int ,price_date int,count_muon int ,day_bd date, id_category references tb_category(id)) ";
         sqLiteDatabase.execSQL(tb_vehicles);
 
         // user
-        String tb_user = "create table if not exists  tb_user (id integer primary key autoincrement, user_name string,password string,full_name string,int position)";
+        String tb_user = "create table if not exists  tb_user (id integer primary key autoincrement, user_name string,password string,full_name string,position int )";
         sqLiteDatabase.execSQL(tb_user);
-        String tb_driver = "create table if not exists  tb_driver (id integer primary key autoincrement, user_name string,password string,full_name string,luong int,status_driver int , user_id references tb_user(id))";
+        String tb_driver = "create table if not exists  tb_driver (id integer primary key autoincrement, user_name string,password string,full_name string,luongcb int,status_driver int , user_id references tb_user(id))";
         sqLiteDatabase.execSQL(tb_driver);
         String tb_client = "create table if not exists  tb_client (id integer primary key autoincrement, user_name string,password string,full_name string, user_id references tb_user(id))";
         sqLiteDatabase.execSQL(tb_client);
