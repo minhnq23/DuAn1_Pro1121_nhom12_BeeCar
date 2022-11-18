@@ -1,31 +1,32 @@
 package com.example.beecar.Model;
 
 public class Driver {
-    private   String idDriver;
-    private String user_name;
-    private String password;
-    private String full_name;
-    private String status_driver;
-    private String idUser;
+        int id;
+        String user_name;
+        String password;
+        String full_name;
+        int luongcb;
+        int status_driver;
+        int user_id;
+
+        public static final String TB_Name = "tb_driver";
+        public static final String COL_id = "id";
+        public static final String COL_user_name = "user_name";
+        public static final String COL_password = "password";
+        public static final String COL_full_name = "full_name";
+        public static final String COL_luongcb = "luongcb";
+        public static final String COL_status = "status_driver";
+        public static final String COL_user_id = "user_id";
 
     public Driver() {
     }
 
-    public Driver(String idDriver, String user_name, String password, String full_name, String status_driver, String idUser) {
-        this.idDriver = idDriver;
-        this.user_name = user_name;
-        this.password = password;
-        this.full_name = full_name;
-        this.status_driver = status_driver;
-        this.idUser = idUser;
+    public int getId() {
+        return id;
     }
 
-    public String getIdDriver() {
-        return idDriver;
-    }
-
-    public void setIdDriver(String idDriver) {
-        this.idDriver = idDriver;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUser_name() {
@@ -52,19 +53,27 @@ public class Driver {
         this.full_name = full_name;
     }
 
-    public String getStatus_driver() {
+    public int getLuongcb() {
+        return luongcb;
+    }
+
+    public void setLuongcb(int luongcb) {
+        this.luongcb = luongcb;
+    }
+
+    public int getStatus_driver() {
         return status_driver;
     }
 
-    public void setStatus_driver(String status_driver) {
+    public void setStatus_driver(int status_driver) {
         this.status_driver = status_driver;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

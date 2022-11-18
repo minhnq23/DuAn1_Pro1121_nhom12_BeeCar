@@ -6,6 +6,12 @@ public class Category {
 
     public Category() {
     }
+    public static final String TB_name = "tb_category";
+    public static final String COL_id = "id";
+    public static final String COL_name = "name_category";
+
+
+
 
     public int getId() {
         return id;
