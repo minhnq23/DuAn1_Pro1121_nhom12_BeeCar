@@ -10,7 +10,7 @@ public class Client {
     public Client() {
     }
 
-    public static final String TB_Name = "tb_driver";
+    public static final String TB_Name = "tb_client";
     public static final String COL_id = "id";
     public static final String COL_user_name = "user_name";
     public static final String COL_password = "password";

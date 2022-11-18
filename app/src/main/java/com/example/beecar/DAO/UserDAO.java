@@ -11,83 +11,60 @@ import com.example.beecar.Model.User;
 import java.util.ArrayList;
 
 public class UserDAO {
-    private SQLiteDatabase database;
-     private MyDbHelper dbHelper;
-    public static final String TABLE_NAME = "tb_user";
+    MyDbHelper myDbHelper;
 
     public UserDAO(Context context) {
-       dbHelper = new MyDbHelper(context);
-       database = dbHelper.getWritableDatabase();
+       myDbHelper = new MyDbHelper(context);
+       myDbHelper.getWritableDatabase();
     }
 
     public ArrayList<User> selectAll(){
-        ArrayList<User> list_user = new ArrayList<>();
-        String select = "SELECT * FROM "+ UserDAO.TABLE_NAME;
-        Cursor cursor  = database.rawQuery(select, null);
+        ArrayList<User> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT*FROM tb_user";
+        Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
-                User user = new User();
-                user.setIdUser(cursor.getString(0));
-                user.setUser_name(cursor.getString(1));
-                user.setPassword(cursor.getString(2));
-                user.setFull_name(cursor.getString(3));
-                user.setPosition(cursor.getString(4));
-                list_user.add(user);
+                User objU = new User();
+                objU.setId(cursor.getInt(0));
+                objU.setUser_name(cursor.getString(1));
+                objU.setPassword(cursor.getString(2));
+                objU.setFull_name(cursor.getString(3));
+                objU.setPosition(cursor.getInt(4));
+                list.add(objU);
                 cursor.moveToNext();
             }
-            cursor.close();
-
         }
-
-        return list_user;
+        cursor.close();
+        return list;
     }
 
-    public long insertUser(User user){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("idUser",user.getIdUser());
-        contentValues.put("user_name",user.getUser_name());
-        contentValues.put("password",user.getPassword());
-        contentValues.put("full_name",user.getFull_name());
-        contentValues.put("position",user.getPosition());
-        try {
-            long res = database.insert(TABLE_NAME,null,contentValues);
-            if(res<0){
-                return -1;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 1;
+    public boolean insert(User objU){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(User.COL_user_name,objU.getUser_name());
+        values.put(User.COL_password,objU.getPassword());
+        values.put(User.COL_full_name,objU.getFull_name());
+        values.put(User.COL_position,objU.getPosition());
+        long row = db.insert(User.TB_Name,null,values);
+        return row>0;
     }
-
-
-    public int update(User user){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("idUser",user.getIdUser());
-        contentValues.put("user_name",user.getUser_name());
-        contentValues.put("password",user.getPassword());
-        contentValues.put("full_name",user.getFull_name());
-        contentValues.put("position",user.getPosition());
-        try {
-            if(database.update(TABLE_NAME, contentValues, "idUser"+"=?", new String[]{"idUser"})==-1){
-                return -1;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 1;
+    public boolean update(User objU){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(User.COL_user_name,objU.getUser_name());
+        values.put(User.COL_password,objU.getPassword());
+        values.put(User.COL_full_name,objU.getFull_name());
+        values.put(User.COL_position,objU.getPosition());
+        int row = db.update(User.TB_Name,values,"id=?", new String[]{objU.getId()+""});
+        return row>0;
     }
 
 
-    public int delete(User user){
-        try {
-            if(database.delete(TABLE_NAME,"idUser"+"=?",new String[]{"idUser"})==-1){
-                return -1;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 1;
-    }
+
+
+
+
+
 
 }

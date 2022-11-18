@@ -13,7 +13,6 @@ public class Vehicles {
     public  static final String COL_id = "id";
     public  static final String COL_image_car = "image_car";
     public  static final String COL_name_car = "name_car";
-
     public  static final String COL_price_time = "price_time";
     public  static final String COL_price_date = "price_date";
     public  static final String COL_count_muon = "count_muon";

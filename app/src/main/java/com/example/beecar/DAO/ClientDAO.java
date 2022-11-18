@@ -13,64 +13,57 @@ import com.example.beecar.Model.User;
 import java.util.ArrayList;
 
 public class ClientDAO {
-    private SQLiteDatabase database;
-    private MyDbHelper dbHelper;
-    public static final String TABLE_NAME = "tb_client";
+
+     MyDbHelper myDbHelper;
 
     public ClientDAO(Context context) {
-        dbHelper = new MyDbHelper(context);
-        database = dbHelper.getWritableDatabase();
+        myDbHelper = new MyDbHelper(context);
+        myDbHelper.getReadableDatabase();
     }
-
     public ArrayList<Client> selectAll(){
-        ArrayList<Client> list_client = new ArrayList<>();
-        String select = "SELECT * FROM "+ ClientDAO.TABLE_NAME;
-        Cursor cursor  = database.rawQuery(select, null);
+        ArrayList<Client> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT*FROM tb_client";
+        Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
-                Client client = new Client();
-                client.setIdCilent(cursor.getString(0));
-                client.setUser_name(cursor.getString(1));
-                client.setPassword(cursor.getString(2));
-                client.setFull_name(cursor.getString(3));
-                list_client.add(client);
+                Client objC = new Client();
+                objC.setId(cursor.getInt(0));
+                objC.setUser_name(cursor.getString(1));
+                objC.setPassword(cursor.getString(2));
+                objC.setFull_name(cursor.getString(3));
+                objC.setUser_id(cursor.getInt(4));
+
+                list.add(objC);
                 cursor.moveToNext();
+
             }
-            cursor.close();
         }
-        return list_client;
+        cursor.close();
+        return list;
     }
 
-    public long insertClient(Client client){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("idCilent",client.getIdUser());
-        contentValues.put("user_name",client.getUser_name());
-        contentValues.put("password",client.getPassword());
-        contentValues.put("full_name",client.getFull_name());
-        try {
-            long res = database.insert(TABLE_NAME,null,contentValues);
-            if(res<0){
-                return -1;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 1;
+    public boolean insert(Client objC){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Client.COL_user_name,objC.getUser_name());
+        values.put(Client.COL_password,objC.getPassword());
+        values.put(Client.COL_full_name,objC.getFull_name());
+        values.put(Client.COL_user_id,objC.getUser_id());
+        long row = db.insert(Client.TB_Name,null,values);
+        return row>0;
+    }
+    public boolean update(Client objC){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Client.COL_user_name,objC.getUser_name());
+        values.put(Client.COL_password,objC.getPassword());
+        values.put(Client.COL_full_name,objC.getFull_name());
+        values.put(Client.COL_user_id,objC.getUser_id());
+        int row = db.update(Client.TB_Name,values,"id=?", new String[]{objC.getId()+""});
+        return row>0;
     }
 
-    public int update(Client client){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("idCilent",client.getIdUser());
-        contentValues.put("user_name",client.getUser_name());
-        contentValues.put("password",client.getPassword());
-        contentValues.put("full_name",client.getFull_name());
-        try {
-            if(database.update(TABLE_NAME, contentValues, "idCilent"+"=?", new String[]{"idCilent"})==-1){
-                return -1;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 1;
-    }
+
+
 }
