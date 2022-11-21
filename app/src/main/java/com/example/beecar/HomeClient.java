@@ -1,6 +1,5 @@
 package com.example.beecar;
 
-import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
