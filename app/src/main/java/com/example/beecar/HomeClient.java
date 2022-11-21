@@ -1,6 +1,5 @@
 package com.example.beecar;
 
-import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,6 +9,6 @@ public class HomeClient extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_client2);
+        setContentView(R.layout.activity_home_client);
     }
 }
