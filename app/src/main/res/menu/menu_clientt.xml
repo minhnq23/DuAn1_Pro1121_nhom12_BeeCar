@@ -18,7 +18,7 @@
     <item
         android:title="Hồ sơ"
         android:id="@+id/driverHome"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_user2"
         />
 
 </menu>
