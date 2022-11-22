@@ -72,9 +72,9 @@ public class VehiclesDAO {
 
     }
 
-    public boolean delete(Vehicles objV){
+    public boolean delete(int objV){
         SQLiteDatabase db = myDbHelper.getWritableDatabase();
-        int row = db.delete(Vehicles.TB_name,"id=?",new String[]{objV.getId()+""});
+        int row = db.delete(Vehicles.TB_name,"id=?",new String[]{objV+""});
         return row>0;
     }
 }
