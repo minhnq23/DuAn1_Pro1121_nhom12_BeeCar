@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home2"
         />
     <item
-        android:title="Lịch trình"
+        android:title="Chuyến đi"
         android:id="@+id/mapclient"
         android:icon="@drawable/ic_map2"
         />
@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_support2"
         />
     <item
-        android:title="Hồ sơ"
+        android:title="Thông tin"
         android:id="@+id/driverHome"
         android:icon="@drawable/ic_user2"
         />
