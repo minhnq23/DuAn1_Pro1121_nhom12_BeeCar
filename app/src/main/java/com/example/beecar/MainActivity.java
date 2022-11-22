@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     EditText ed_userName;
     EditText ed_password;
     Button btnLogin;
+    LoadingDialog dialog;
+
 
 
     @Override
@@ -34,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        myDbHelper = new MyDbHelper(this);
 //        myDbHelper.getReadableDatabase();
-        Intent intent = new Intent(this,SplashActivity.class);
-        startActivity(intent);
+
         tvRegister = findViewById(R.id.tv_register);
+        dialog  = new LoadingDialog(MainActivity.this);
         tvRegister.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void loginApp() {
         userDAO = new UserDAO(this);
         ed_userName = findViewById(R.id.ed_user_name_lg);
@@ -81,15 +85,33 @@ public class MainActivity extends AppCompatActivity {
             if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
                 if (obj.getPosition() == 1) {
                     Intent ic = new Intent(this, HomeClient.class);
-                    ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(ic);
+                    dialog.show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(ic);
+                            dialog.dismiss();
+                        }
+                    },3000);
+
 
                     return;
                 }
                 if (obj.getPosition() == 2) {
                     Intent id = new Intent(this, NavigationDrawerForDriver.class);
-                    id.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(id);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            id.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(id);
+                            dialog.dismiss();
+                        }
+                    },3000);
+
                     return;
                 }
             }
