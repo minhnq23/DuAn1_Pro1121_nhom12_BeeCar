@@ -9,14 +9,23 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.beecar.DAO.UserDAO;
 import com.example.beecar.Database.MyDbHelper;
+import com.example.beecar.Model.User;
 
 public class MainActivity extends AppCompatActivity {
 //    MyDbHelper myDbHelper;
+    UserDAO userDAO;
+
     TextView tvRegister;
+    EditText ed_userName;
+    EditText ed_password;
+    Button btnLogin;
 
 
     @Override
@@ -40,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(view -> {
+            loginApp();
+        });
 
 
 
@@ -53,6 +66,39 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void loginApp() {
+        userDAO = new UserDAO(this);
+        ed_userName = findViewById(R.id.ed_user_name_lg);
+        ed_password = findViewById(R.id.ed_password_lg);
+        String str_UserName = ed_userName.getText().toString().trim();
+        String str_Password = ed_password.getText().toString().trim();
+
+
+
+
+        for (User obj: userDAO.selectAll()){
+            if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
+                if (obj.getPosition() == 1) {
+                    Intent ic = new Intent(this, HomeClient.class);
+                    startActivity(ic);
+
+                    return;
+                }
+                if (obj.getPosition() == 2) {
+                    Intent id = new Intent(this, NavigationDrawerForDriver.class);
+                    startActivity(id);
+                    return;
+                }
+            }
+        }
+
+
+    }
+
+
+
+
     int count = 0;
     @Override
     public void onBackPressed() {
