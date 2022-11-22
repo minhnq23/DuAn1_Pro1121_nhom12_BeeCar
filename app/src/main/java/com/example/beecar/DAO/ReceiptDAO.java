@@ -9,6 +9,7 @@ import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Client;
 
 import com.example.beecar.Model.Receipt;
+import com.example.beecar.Model.Vehicles;
 
 import java.util.ArrayList;
 
@@ -94,6 +95,12 @@ public class ReceiptDAO {
         values.put(Receipt.COL_driver_id,objR.getDriver_id());
         values.put(Receipt.COL_vehicles_id,objR.getVehicles_id());
         long row = db.insert(Receipt.TB_name,null,values);
+        return row>0;
+    }
+
+    public boolean delete(int objV) {
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        int row = db.delete(Vehicles.TB_name,"id=?",new String[]{objV+""});
         return row>0;
     }
 
