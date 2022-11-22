@@ -81,12 +81,14 @@ public class MainActivity extends AppCompatActivity {
             if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
                 if (obj.getPosition() == 1) {
                     Intent ic = new Intent(this, HomeClient.class);
+                    ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(ic);
 
                     return;
                 }
                 if (obj.getPosition() == 2) {
                     Intent id = new Intent(this, NavigationDrawerForDriver.class);
+                    id.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(id);
                     return;
                 }
