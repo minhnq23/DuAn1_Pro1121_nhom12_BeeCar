@@ -36,8 +36,8 @@ public class RegisterDriverActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar_register_driver);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_orange);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_orange);
 
         driverDAO = new DriverDAO(getApplicationContext());
 
