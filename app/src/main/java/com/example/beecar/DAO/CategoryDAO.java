@@ -52,9 +52,9 @@ public class CategoryDAO {
         int row = db.update(Category.TB_name,values,"id=?",new String[]{objc.getId()+""});
         return row>0;
     }
-    public  boolean delete(Category objC){
+    public  boolean delete(int objC){
         SQLiteDatabase db = myDbHelper.getWritableDatabase();
-        int row = db.delete(Category.TB_name,"id=?",new String[]{objC.getId()+""});
+        int row = db.delete(Category.TB_name,"id=?",new String[]{objC+""});
         return row>0;
     }
 }

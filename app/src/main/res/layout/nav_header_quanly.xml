@@ -8,7 +8,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="99dp"
         android:layout_height="90dp"
-        android:src="@drawable/taixe"
+        android:src="@drawable/quanly"
         />
     <TextView
         android:layout_width="wrap_content"
