@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,7 +37,7 @@ public class RegisterDriverActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar_register_driver);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_orange);
 
         driverDAO = new DriverDAO(getApplicationContext());
@@ -126,6 +127,7 @@ public class RegisterDriverActivity extends AppCompatActivity {
                         if(driverDAO.insert(objD)){
                             Toast.makeText(this, "Thêm Thành Công", Toast.LENGTH_SHORT).show();
                             Log.e("SIZE", driverDAO.selectAll().size()+"");
+                            startActivity(new Intent(this,MainActivity.class));
                             return;
                         }
 
