@@ -13,27 +13,39 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
+
 public class SplashActivity extends AppCompatActivity {
     ImageView imageView;
-    TextView tv_title;
+    ShimmerTextView tv_title;
+    Shimmer shimmer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-           imageView = findViewById(R.id.imageView);
+
            tv_title = findViewById(R.id.tv_title_lg);
-        Animation animationImg = AnimationUtils.loadAnimation(this,R.anim.anim_logo_splash_screen);
-        imageView.startAnimation(animationImg);
+
+
+
+
         ObjectAnimator animator = ObjectAnimator.ofFloat(tv_title,"translationY",-100f,0f);
         animator.setDuration(2000);
         animator.setRepeatCount(0);
         animator.start();
         Animation animationTitle = AnimationUtils.loadAnimation(this,R.anim.anim_title_splash_screen);
             tv_title.startAnimation(animationTitle);
-           Typeface font = Typeface.createFromAsset(getAssets(),"fonts/FredokaOne-Regular.ttf");
-           tv_title.setTypeface(font);
+            Typeface font = Typeface.createFromAsset(getAssets(),"fonts/FredokaOne-Regular.ttf");
+            tv_title.setTypeface(font);
+
+
+            shimmer = new Shimmer();
+            shimmer.setDuration(2000);
+            shimmer.start(tv_title);
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -41,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
-        },3000);
+        },4000);
 
 
     }

@@ -25,8 +25,6 @@ public class LoadingDialog extends Dialog {
         setTitle(null);
         setCancelable(true);
         setOnCancelListener(null);
-
-
         View view = LayoutInflater.from(context).inflate(R.layout.loading_layout,null);
         setContentView(view);
 
