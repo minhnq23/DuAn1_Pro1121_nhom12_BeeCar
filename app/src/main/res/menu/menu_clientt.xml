@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_support2"
         />
     <item
-        android:title="Thông tin"
+        android:title="Cá nhân"
         android:id="@+id/driverHome"
         android:icon="@drawable/ic_user2"
         />
