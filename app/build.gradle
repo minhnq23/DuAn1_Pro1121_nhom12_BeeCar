@@ -43,6 +43,9 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     //shimmer text
     implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+    // add lottie
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
 
 
 }
