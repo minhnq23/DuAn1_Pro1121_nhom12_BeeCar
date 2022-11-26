@@ -15,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.beecar.DAO.UserDAO;
+import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.User;
+import com.example.beecar.Model.Vehicles;
 
 public class MainActivity extends AppCompatActivity {
 //    MyDbHelper myDbHelper;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        myDbHelper = new MyDbHelper(this);
 //        myDbHelper.getReadableDatabase();
-
+        addCar();
         tvRegister = findViewById(R.id.tv_register);
         dialog  = new LoadingDialog(MainActivity.this);
         tvRegister.setOnTouchListener(new View.OnTouchListener() {
@@ -140,5 +142,42 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(1);
             }
 
+        }
+        public void addCar(){
+            VehiclesDAO vehiclesDAO = new VehiclesDAO(this);
+            if (vehiclesDAO.selectAll().size()<=0){
+                Vehicles obj1 = new Vehicles(R.drawable.picture1,"Kia Morning",30000,500000,0,"25/11/2022",1);
+                Vehicles obj2 = new Vehicles(R.drawable.picture1,"Hyundai Grand i10",40000,700000,0,"25/11/2022",1);
+                Vehicles obj3 = new Vehicles(R.drawable.picture1,"Vinfast Fadil",40000,700000,0,"25/11/2022",1);
+                Vehicles obj4 = new Vehicles(R.drawable.picture1,"Toyota Wigo",30000,500000,0,"25/11/2022",1);
+                Vehicles obj5 = new Vehicles(R.drawable.picture1,"Honda Brio",30000,500000,0,"25/11/2022",1);
+                Vehicles obj6 = new Vehicles(R.drawable.picture1,"Suzuki Celerio",30000,500000,0,"25/11/2022",6);
+                Vehicles obj7 = new Vehicles(R.drawable.picture1,"Toyota Raize",40000,700000,0,"25/11/2022",1);
+                Vehicles obj8 = new Vehicles(R.drawable.picture1,"Mitsubishi Mirage",30000,500000,0,"25/11/2022",1);
+                Vehicles obj9 = new Vehicles(R.drawable.picture1,"Huyndai Solati",100000,1500000,0,"25/11/2022",1);
+                Vehicles obj10 = new Vehicles(R.drawable.picture1,"Ford Transit Limousine",120000,1800000,0,"25/11/2022",1);
+                Vehicles obj11 = new Vehicles(R.drawable.picture1,"Toyota Hiace",100000,1500000,0,"25/11/2022",1);
+                Vehicles obj12 = new Vehicles(R.drawable.picture1,"Toyota Gravia",100000,1500000,0,"25/11/2022",1);
+                Vehicles obj13 = new Vehicles(R.drawable.picture1,"Mercedes Sprinter",120000,1800000,0,"25/11/2022",1);
+                Vehicles obj14 = new Vehicles(R.drawable.picture1,"Gaz-Gazelle Next Nga",120000,1800000,0,"25/11/2022",1);
+                Vehicles obj15 = new Vehicles(R.drawable.picture1,"Ford Transit Luxury Van",150000,2000000,0,"25/11/2022",1);
+
+                vehiclesDAO.insert(obj1);
+                vehiclesDAO.insert(obj2);
+                vehiclesDAO.insert(obj3);
+                vehiclesDAO.insert(obj4);
+                vehiclesDAO.insert(obj5);
+                vehiclesDAO.insert(obj6);
+                vehiclesDAO.insert(obj7);
+                vehiclesDAO.insert(obj8);
+                vehiclesDAO.insert(obj9);
+                vehiclesDAO.insert(obj10);
+                vehiclesDAO.insert(obj11);
+                vehiclesDAO.insert(obj12);
+                vehiclesDAO.insert(obj13);
+                vehiclesDAO.insert(obj14);
+                vehiclesDAO.insert(obj15);
+
+            }
         }
     }
