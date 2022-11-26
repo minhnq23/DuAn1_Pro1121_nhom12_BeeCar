@@ -19,6 +19,17 @@ public class Vehicles {
     public  static final String COL_day_bd = "day_bd";
     public  static final String COL_id_category = "id_category";
 
+    public Vehicles( int image, String name_car, int price_time, int price_date, int count_muon, String day_bd, int id_category) {
+
+        this.image = image;
+        this.name_car = name_car;
+        this.price_time = price_time;
+        this.price_date = price_date;
+        this.count_muon = count_muon;
+        this.day_bd = day_bd;
+        this.id_category = id_category;
+    }
+
     public Vehicles() {
     }
 
