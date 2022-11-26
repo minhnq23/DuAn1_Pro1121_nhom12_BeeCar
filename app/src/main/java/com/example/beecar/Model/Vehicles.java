@@ -2,15 +2,18 @@ package com.example.beecar.Model;
 
 public class Vehicles {
     int id;
-    int image;
+    byte[] image;
     String name_car;
+    String bien_ks;
+    int count_muon;
     int price_time;
     int price_date;
-    int count_muon;
+
     String day_bd;
+    String day_dk;
     int id_category;
     public  static final String TB_name = "tb_vehicles";
-    public  static final String COL_id = "id";
+
     public  static final String COL_image_car = "image_car";
     public  static final String COL_name_car = "name_car";
     public  static final String COL_price_time = "price_time";
@@ -38,12 +41,28 @@ public class Vehicles {
         this.day_bd = day_bd;
     }
 
-    public int getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getBien_ks() {
+        return bien_ks;
+    }
+
+    public void setBien_ks(String bien_ks) {
+        this.bien_ks = bien_ks;
+    }
+
+    public String getDay_dk() {
+        return day_dk;
+    }
+
+    public void setDay_dk(String day_dk) {
+        this.day_dk = day_dk;
     }
 
     public String getName_car() {

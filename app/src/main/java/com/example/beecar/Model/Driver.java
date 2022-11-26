@@ -5,20 +5,30 @@ public class Driver {
         String user_name;
         String password;
         String full_name;
+        Byte[] image_gplx;
         int luongcb;
         int status_driver;
         int user_id;
 
         public static final String TB_Name = "tb_driver";
-        public static final String COL_id = "id";
+
         public static final String COL_user_name = "user_name";
         public static final String COL_password = "password";
         public static final String COL_full_name = "full_name";
+        public static final String COL_image_gplx = "image_gplx";
         public static final String COL_luongcb = "luongcb";
         public static final String COL_status = "status_driver";
         public static final String COL_user_id = "user_id";
 
     public Driver() {
+    }
+
+    public Byte[] getImage_gplx() {
+        return image_gplx;
+    }
+
+    public void setImage_gplx(Byte[] image_gplx) {
+        this.image_gplx = image_gplx;
     }
 
     public int getId() {
