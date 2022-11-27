@@ -12,7 +12,10 @@ import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Vehicles;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class VehiclesDAO {
     MyDbHelper myDbHelper;
@@ -21,6 +24,9 @@ public class VehiclesDAO {
         myDbHelper = new MyDbHelper(context);
         myDbHelper.getReadableDatabase();
     }
+
+
+
     public ArrayList<Vehicles> selectAll(){
         ArrayList<Vehicles> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
@@ -38,7 +44,8 @@ public class VehiclesDAO {
                 objV.setPrice_date(cursor.getInt(6));
                 objV.setDay_bd(cursor.getString(7));
                 objV.setDay_dk(cursor.getString(8));
-                objV.setId_category(cursor.getInt(9));
+                objV.setVehicles_status(cursor.getInt(9));
+                objV.setId_category(cursor.getInt(10));
 
                 list.add(objV);
                 cursor.moveToNext();
@@ -66,6 +73,32 @@ public class VehiclesDAO {
 
 
     }
+    public ArrayList<Vehicles> selectCarStatus0(){
+        ArrayList<Vehicles> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT *FROM tb_vehicles where vehicles_status = 0";
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToNext()){
+            while (!cursor.isAfterLast()){
+                Vehicles objV = new Vehicles();
+                objV.setId(cursor.getInt(0));
+                objV.setImage(cursor.getBlob(1));
+                objV.setName_car(cursor.getString(2));
+                objV.setBien_ks(cursor.getString(3));
+                objV.setCount_muon(cursor.getInt(4));
+                objV.setPrice_time(cursor.getInt(5));
+                objV.setPrice_date(cursor.getInt(6));
+                objV.setDay_bd(cursor.getString(7));
+                objV.setDay_dk(cursor.getString(8));
+                objV.setVehicles_status(cursor.getInt(9));
+                objV.setId_category(cursor.getInt(10));
+                list.add(objV);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
     public boolean update(Vehicles objV){
         SQLiteDatabase db= myDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -77,11 +110,16 @@ public class VehiclesDAO {
         values.put(Vehicles.COL_price_time,objV.getPrice_time());
         values.put(Vehicles.COL_price_date,objV.getPrice_date());
         values.put(Vehicles.COL_day_bd,objV.getDay_bd());
+        values.put(Vehicles.COL_vehicles_status,objV.getVehicles_status());
         values.put(Vehicles.COL_id_category,objV.getId_category());
         int row = db.update(Vehicles.TB_name,values,"id=?",new String[]{objV.getId()+""});
         return row>0;
 
     }
+
+
+
+
 
     public boolean delete(int objV){
         SQLiteDatabase db = myDbHelper.getWritableDatabase();
@@ -90,5 +128,10 @@ public class VehiclesDAO {
     }
 
 
+    public  String getDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+        return currentDateandTime;
+    }
 
 }

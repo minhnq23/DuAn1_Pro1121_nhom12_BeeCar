@@ -8,13 +8,14 @@ public class Vehicles {
     int count_muon;
     int price_time;
     int price_date;
-
     String day_bd;
     String day_dk;
+    int vehicles_status;
     int id_category;
     public  static final String TB_name = "tb_vehicles";
 
     public  static final String COL_image_car = "image_car";
+
     public  static final String COL_name_car = "name_car";
     public  static final String COL_bien_ks = "bien_ks";
     public  static final String COL_price_time = "price_time";
@@ -22,23 +23,22 @@ public class Vehicles {
     public  static final String COL_count_muon = "count_muon";
     public  static final String COL_day_bd = "day_bd";
     public  static final String COL_day_dk = "day_dk";
+    public  static final String COL_vehicles_status = "vehicles_status";
     public  static final String COL_id_category = "id_category";
 
 
 
-    public Vehicles(byte[] image, String name_car, String bien_ks, int count_muon, int price_time, int price_date, String day_bd, String day_dk, int id_category) {
-        this.image = image;
-        this.name_car = name_car;
-        this.bien_ks = bien_ks;
-        this.count_muon = count_muon;
-        this.price_time = price_time;
-        this.price_date = price_date;
-        this.day_bd = day_bd;
-        this.day_dk = day_dk;
-        this.id_category = id_category;
-    }
+
 
     public Vehicles() {
+    }
+
+    public int getVehicles_status() {
+        return vehicles_status;
+    }
+
+    public void setVehicles_status(int vehicles_status) {
+        this.vehicles_status = vehicles_status;
     }
 
     public int getId() {
