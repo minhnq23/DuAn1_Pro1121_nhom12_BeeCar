@@ -5,7 +5,7 @@ public class Driver {
         String user_name;
         String password;
         String full_name;
-        Byte[] image_gplx;
+        byte[] image_gplx;
         int luongcb;
         int status_driver;
         int user_id;
@@ -23,11 +23,11 @@ public class Driver {
     public Driver() {
     }
 
-    public Byte[] getImage_gplx() {
+    public byte[] getImage_gplx() {
         return image_gplx;
     }
 
-    public void setImage_gplx(Byte[] image_gplx) {
+    public void setImage_gplx(byte[] image_gplx) {
         this.image_gplx = image_gplx;
     }
 

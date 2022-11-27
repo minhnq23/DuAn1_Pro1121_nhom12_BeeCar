@@ -1,21 +1,26 @@
 package com.example.beecar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.beecar.DAO.ClientDAO;
 import com.example.beecar.DAO.DriverDAO;
 import com.example.beecar.DAO.UserDAO;
+import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Driver;
 import com.example.beecar.Model.User;
 
@@ -27,6 +32,7 @@ public class RegisterDriverActivity extends AppCompatActivity {
     EditText lastName , firtName , userNameDriver , passNameDriver ;
     TextView errorlastName , errorfirtName , erroreruserName , errorPass ;
     Button btnDriver;
+    ImageView img_gplx;
 
     DriverDAO driverDAO;
     UserDAO userDAO;
@@ -52,9 +58,12 @@ public class RegisterDriverActivity extends AppCompatActivity {
         errorfirtName = findViewById(R.id.error_first_name);
         erroreruserName = findViewById(R.id.error_user_name);
         errorPass = findViewById(R.id.error_password);
+        img_gplx = findViewById(R.id.image_gplx);
 
         btnDriver = findViewById(R.id.btn_register_driver);
-
+        img_gplx.setOnClickListener(view -> {
+            startCaputer();
+        });
         btnDriver.setOnClickListener(view ->{
                 RegisterDiver();
         });
@@ -62,6 +71,7 @@ public class RegisterDriverActivity extends AppCompatActivity {
 
 
         public  void RegisterDiver (){
+                MyDbHelper db = new MyDbHelper(this);
 
             userDAO = new UserDAO(this);
             driverDAO = new DriverDAO(this);
@@ -108,6 +118,7 @@ public class RegisterDriverActivity extends AppCompatActivity {
                 errorPass.setText("");
             }
 
+
             User obj = new User();
             obj.setUser_name(str_userName);
             obj.setFull_name(str_lName+" "+str_fName);
@@ -122,6 +133,8 @@ public class RegisterDriverActivity extends AppCompatActivity {
                         objD.setUser_name(u.getUser_name());
                         objD.setPassword(u.getPassword());
                         objD.setFull_name(u.getFull_name());
+                        objD.setLuongcb(1000);
+                        objD.setImage_gplx(db.getBytes(img_gplx));
                         objD.setStatus_driver(0);
                         objD.setUser_id(u.getId());
                         if(driverDAO.insert(objD)){
@@ -141,6 +154,19 @@ public class RegisterDriverActivity extends AppCompatActivity {
 
         }
 
+    private void startCaputer() {
+        Intent capture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(capture,8888);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==8888 && resultCode == RESULT_OK){
+            Bitmap phBitmap = (Bitmap) data.getExtras().get("data");
+            img_gplx.setImageBitmap(phBitmap);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
