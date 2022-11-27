@@ -4,10 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.widget.ImageView;
 
 import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.Vehicles;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class VehiclesDAO {
@@ -26,13 +30,16 @@ public class VehiclesDAO {
             while (!cursor.isAfterLast()){
                 Vehicles objV = new Vehicles();
                 objV.setId(cursor.getInt(0));
-                objV.setImage(cursor.getInt(1));
+                objV.setImage(cursor.getBlob(1));
                 objV.setName_car(cursor.getString(2));
-                objV.setPrice_time(cursor.getInt(3));
-                objV.setPrice_date(cursor.getInt(4));
-                objV.setCount_muon(cursor.getInt(5));
-                objV.setDay_bd(cursor.getString(6));
-                objV.setId_category(cursor.getInt(7));
+                objV.setBien_ks(cursor.getString(3));
+                objV.setCount_muon(cursor.getInt(4));
+                objV.setPrice_time(cursor.getInt(5));
+                objV.setPrice_date(cursor.getInt(6));
+                objV.setDay_bd(cursor.getString(7));
+                objV.setDay_dk(cursor.getString(8));
+                objV.setId_category(cursor.getInt(9));
+
                 list.add(objV);
                 cursor.moveToNext();
             }
@@ -46,6 +53,8 @@ public class VehiclesDAO {
         ContentValues values = new ContentValues();
         values.put(Vehicles.COL_image_car,objV.getImage());
         values.put(Vehicles.COL_name_car,objV.getName_car());
+        values.put(Vehicles.COL_bien_ks,objV.getBien_ks());
+        values.put(Vehicles.COL_day_dk, objV.getDay_dk());
         values.put(Vehicles.COL_count_muon,objV.getCount_muon());
         values.put(Vehicles.COL_price_time,objV.getPrice_time());
         values.put(Vehicles.COL_price_date,objV.getPrice_date());
@@ -62,6 +71,8 @@ public class VehiclesDAO {
         ContentValues values = new ContentValues();
         values.put(Vehicles.COL_image_car,objV.getImage());
         values.put(Vehicles.COL_name_car,objV.getName_car());
+        values.put(Vehicles.COL_bien_ks,objV.getBien_ks());
+        values.put(Vehicles.COL_day_dk, objV.getDay_dk());
         values.put(Vehicles.COL_count_muon,objV.getCount_muon());
         values.put(Vehicles.COL_price_time,objV.getPrice_time());
         values.put(Vehicles.COL_price_date,objV.getPrice_date());
@@ -77,4 +88,7 @@ public class VehiclesDAO {
         int row = db.delete(Vehicles.TB_name,"id=?",new String[]{objV+""});
         return row>0;
     }
+
+
+
 }
