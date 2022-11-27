@@ -76,7 +76,36 @@ public class VehiclesDAO {
     public ArrayList<Vehicles> selectCarStatus0(){
         ArrayList<Vehicles> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT *FROM tb_vehicles where vehicles_status = 0";
+        String sql = "SELECT *FROM tb_vehicles";
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToNext()){
+            while (!cursor.isAfterLast()){
+                Vehicles objV = new Vehicles();
+                objV.setId(cursor.getInt(0));
+                objV.setImage(cursor.getBlob(1));
+                objV.setName_car(cursor.getString(2));
+                objV.setBien_ks(cursor.getString(3));
+                objV.setCount_muon(cursor.getInt(4));
+                objV.setPrice_time(cursor.getInt(5));
+                objV.setPrice_date(cursor.getInt(6));
+                objV.setDay_bd(cursor.getString(7));
+                objV.setDay_dk(cursor.getString(8));
+                objV.setVehicles_status(cursor.getInt(9));
+                objV.setId_category(cursor.getInt(10));
+
+                list.add(objV);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
+
+    public ArrayList<Vehicles> selectCarStatus1(String start_time,String end_time ){
+        ArrayList<Vehicles> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT*FROM tb_vehicles  INNER JOIN tb_receipt where (vehicles_status=1  and strftime("+start_time+", date)< tbvehicles.start_time and strftime("+end_time+", date) < tbvehicles.start_time) or" +
+                "(vehicles_status=1  and strftime("+start_time+", date)>tbvehicles.end_time)";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToNext()){
             while (!cursor.isAfterLast()){

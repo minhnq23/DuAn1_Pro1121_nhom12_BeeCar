@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -14,12 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.beecar.DAO.VehiclesDAO;
+import com.example.beecar.Model.Vehicles;
 
 import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 public class SearchVehiclesTuLai extends AppCompatActivity {
     Toolbar toolbar;
@@ -57,23 +62,36 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
 
         btn_Search.setOnClickListener(view -> {
             checkDate();
+            showData();
         });
 
 
     }
 
-
-
-    public void checkDate(){
+    private void showData() {
+        List<Vehicles> list = new ArrayList<>();
         String strNhan = ed_date_nhan.getText().toString().trim();
         String strTra = ed_date_tra.getText().toString().trim();
 
-        Date datenhan = stringToDate(strNhan);
-        Date datetra = stringToDate(strTra);
-        if (!datenhan.before(datetra)){
-            Toast.makeText(this, "Bạn nhập sai ngày trả", Toast.LENGTH_SHORT).show();
-            return;
+        try {
+            Date datenhan = stringToDate(strNhan);
+            Date datetra = stringToDate(strTra);
+            if (!datenhan.before(datetra)){
+                Toast.makeText(this, "Bạn nhập sai ngày trả", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            Log.e("Notification","Chưa chọn ngày");
         }
+        list.addAll(vehiclesDAO.selectCarStatus0());
+        list.addAll(vehiclesDAO.selectCarStatus1(strNhan,strTra));
+        Log.e("SIZE", list.size()+"");
+
+    }
+
+
+    public void checkDate(){
+
     }
 
 
@@ -100,6 +118,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
 
 
 
+
     private void showDialogPickerNhan() {
         Calendar cal1 = Calendar.getInstance();
         int year = cal1.get(Calendar.YEAR);
@@ -120,8 +139,11 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         };
     }
 
-    private void showDialogPickerTra() {
 
+
+
+
+    private void showDialogPickerTra() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
