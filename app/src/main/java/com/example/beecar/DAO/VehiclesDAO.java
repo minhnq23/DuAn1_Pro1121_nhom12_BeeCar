@@ -104,8 +104,10 @@ public class VehiclesDAO {
     public ArrayList<Vehicles> selectCarStatus1(String start_time,String end_time ){
         ArrayList<Vehicles> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT*FROM tb_vehicles  INNER JOIN tb_receipt where (vehicles_status=1  and strftime("+start_time+", date)< tbvehicles.start_time and strftime("+end_time+", date) < tbvehicles.start_time) or" +
-                "(vehicles_status=1  and strftime("+start_time+", date)>tbvehicles.end_time)";
+        String sql = "SELECT id(tb_vehicles),image_car,name_car,bien_ks,count_muon,price_time,price_date,day_bd,day_dk,vehicles_status,id_category" +
+                "FROM tb_vehicles,tb_receipt where tb_receipt.vehicles_id = tb_vehicles.id " +
+                "and( (vehicles_status=1  and strftime("+start_time+", date)< tb_receipt.start_time and strftime("+end_time+", date) < tb_receipt.start_time) or" +
+                "(vehicles_status=1  and strftime("+start_time+", date)>tb_receipt.end_time))";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToNext()){
             while (!cursor.isAfterLast()){

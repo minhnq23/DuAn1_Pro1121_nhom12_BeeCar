@@ -4,6 +4,7 @@ public class Receipt {
     int id;
     String name_client;
     String name_driver;
+    String dia_diem;
     String oder_time;
     String start_time;
     String end_time;
@@ -16,6 +17,7 @@ public class Receipt {
     public static final String TB_name ="tb_receipt";
     public static final String COL_name_client ="name_client";
     public static final String COL_name_driver ="name_driver";
+    public static final String COL_dia_diem ="dia_diem";
     public static final String COL_oder ="oder_time";
     public static final String COL_start ="start_time";
     public static final String COL_end ="end_time";
@@ -32,6 +34,14 @@ public class Receipt {
 
     public int getId() {
         return id;
+    }
+
+    public String getDia_diem() {
+        return dia_diem;
+    }
+
+    public void setDia_diem(String dia_diem) {
+        this.dia_diem = dia_diem;
     }
 
     public void setId(int id) {

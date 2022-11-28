@@ -1,6 +1,8 @@
 package com.example.beecar.Model;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable {
      int id;
      String user_name;
      String password;

@@ -38,9 +38,10 @@ public class ReceiptDAO {
                 objR.setStatus_driver(cursor.getInt(6));
                 objR.setStatus(cursor.getInt(7));
                 objR.setTotal(cursor.getInt(8));
-                objR.setClient_id(cursor.getInt(9));
-                objR.setDriver_id(cursor.getInt(10));
-                objR.setVehicles_id(cursor.getInt(11));
+                objR.setDia_diem(cursor.getString(9));
+                objR.setClient_id(cursor.getInt(10));
+                objR.setDriver_id(cursor.getInt(11));
+                objR.setVehicles_id(cursor.getInt(12));
                     list.add(objR);
                     cursor.moveToNext();
             }
@@ -67,9 +68,10 @@ public class ReceiptDAO {
                 objR.setStatus_driver(cursor.getInt(6));
                 objR.setStatus(cursor.getInt(7));
                 objR.setTotal(cursor.getInt(8));
-                objR.setClient_id(cursor.getInt(9));
-                objR.setDriver_id(cursor.getInt(10));
-                objR.setVehicles_id(cursor.getInt(11));
+                objR.setDia_diem(cursor.getString(9));
+                objR.setClient_id(cursor.getInt(10));
+                objR.setDriver_id(cursor.getInt(11));
+                objR.setVehicles_id(cursor.getInt(12));
                 list.add(objR);
                 cursor.moveToNext();
             }
@@ -91,6 +93,7 @@ public class ReceiptDAO {
         values.put(Receipt.COL_status_driver,objR.getStatus_driver());
         values.put(Receipt.COL_status,objR.getStatus());
         values.put(Receipt.COL_total,objR.getTotal());
+        values.put(Receipt.COL_dia_diem,objR.getDia_diem());
         values.put(Receipt.COL_client_id,objR.getClient_id());
         values.put(Receipt.COL_driver_id,objR.getDriver_id());
         values.put(Receipt.COL_vehicles_id,objR.getVehicles_id());
