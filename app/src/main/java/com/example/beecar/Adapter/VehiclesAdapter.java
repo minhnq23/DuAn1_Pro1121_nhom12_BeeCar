@@ -3,6 +3,8 @@ package com.example.beecar.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,91 +13,66 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Model.Vehicles;
 import com.example.beecar.R;
 
 import java.util.List;
 
-public class VehiclesAdapter extends BaseAdapter {
+public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.viewholder> {
     List<Vehicles> list;
     VehiclesDAO vehiclesDAO;
     Context context;
 
     public VehiclesAdapter(List<Vehicles> list, Context context) {
         this.list = list;
-        vehiclesDAO = new VehiclesDAO(context);
         this.context = context;
+        notifyDataSetChanged();
     }
+
+    @NonNull
     @Override
-    public int getCount() {
+    public VehiclesAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_vehicels,null);
+        return new viewholder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull VehiclesAdapter.viewholder holder, int position) {
+        final  Vehicles obj = list.get(position);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(obj.getImage(),0,obj.getImage().length);
+        holder.img.setImageBitmap(bitmap);
+        holder.tvName.setText(obj.getName_car());
+        holder.tvPrice.setText(obj.getPrice_date()+"/ngày");
+        holder.tvDayBd.setText(obj.getDay_bd());
+        holder.tvCountThue.setText(obj.getCount_muon()+" chuyến");
+    }
+
+    @Override
+    public int getItemCount() {
         return list.size();
     }
 
-    @Override
-    public Object getItem(int i) {
-        return list.get(i);
+    public class viewholder extends RecyclerView.ViewHolder {
+        ImageView img;
+        TextView tvName;
+        TextView tvPrice;
+        TextView tvDayBd;
+        TextView tvCountThue;
+
+
+        public viewholder(@NonNull View itemView) {
+            super(itemView);
+            img = itemView.findViewById(R.id.img_vehicles);
+            tvName = itemView.findViewById(R.id.tv_name_car);
+            tvPrice = itemView.findViewById(R.id.tv_price_date);
+            tvDayBd = itemView.findViewById(R.id.tv_date_bd);
+            tvCountThue = itemView.findViewById(R.id.tv_lan_thue);
+        }
     }
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
 
-    public static class ViewOfItems{
-        TextView tvnamecar,tvdate,tvlanthue;
-        ImageView imaxoa;
-    }
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-       ViewOfItems viewOfItems;
-       if(view==null){
-           viewOfItems = new ViewOfItems();
-           view=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_vehicels,null,false);
-               viewOfItems.tvnamecar= view.findViewById(R.id.tvnamecar);
-               viewOfItems.tvdate= view.findViewById(R.id.tvdate);
-               viewOfItems.tvlanthue= view.findViewById(R.id.tvlanthue);
-               view.setTag(viewOfItems);
-
-           }else{
-               viewOfItems=(ViewOfItems) view.getTag();
-           }
-       viewOfItems.tvnamecar.setText(list.get(i).getName_car());
-        viewOfItems.tvdate.setText(list.get(i).getDay_bd());
-        viewOfItems.tvlanthue.setText(list.get(i).getId_category());
-        viewOfItems.imaxoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder =new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Xóa Vehicles");
-                builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int id= list.get(i).getId();
-                        if(vehiclesDAO.delete(id)){
-                            Toast.makeText(context,"Xóa Thành Công",Toast.LENGTH_SHORT).show();
-                            list.clear();
-                            list.addAll(vehiclesDAO.selectAll());
-                            notifyDataSetInvalidated();
-                        }
-                    }
-
-                });
-                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }});
-                AlertDialog dialog= builder.create();
-                dialog.show();
-            }
-
-
-        });
-
-
-        return null;
-    }
 }

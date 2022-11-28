@@ -3,9 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="280dp"
     android:orientation="vertical"
+
     android:padding="10dp">
 <!-- Xe-->
     <LinearLayout
+        android:paddingBottom="10dp"
+        android:background="@drawable/bg_btn_thue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -15,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:src="@drawable/picture5"
-            android:id="@+id/imgshowvehicles"
+            android:id="@+id/img_vehicles"
             android:layout_marginTop="10dp" />
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -26,59 +29,63 @@
             >
 
             <LinearLayout
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
                 <TextView
-                    android:id="@+id/tvnamecar"
+                    android:id="@+id/tv_name_car"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_marginLeft="20dp"
-                    android:gravity="center"
                     android:paddingVertical="2dp"
                     android:text="Tên xe"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_price_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="50dp"
                     android:text="850K"
+                    android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="25dp" />
             </LinearLayout>
             <LinearLayout
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
                 <TextView
-                    android:id="@+id/tvlanthue"
-                    android:layout_width="180dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:paddingVertical="2dp"
-                    android:layout_margin="5dp"
-                    android:text="Số lần thuê"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:textSize="18dp"/>
-
-                <TextView
-                    android:id="@+id/tvdate"
+                    android:id="@+id/tv_date_bd"
                     android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:paddingVertical="2dp"
                     android:layout_margin="5dp"
                     android:inputType="number"
-                    android:gravity="center"
+
                     android:text="DD/MM/YYYY"
                     android:textSize="18dp"/>
+
+                <TextView
+                    android:id="@+id/tv_lan_thue"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:paddingVertical="2dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Số lần thuê"
+                    android:textSize="18dp"/>
+
+
             </LinearLayout>
 
 
