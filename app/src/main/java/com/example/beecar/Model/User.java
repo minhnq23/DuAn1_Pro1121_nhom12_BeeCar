@@ -12,6 +12,13 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String user_name, String password, String full_name, int position) {
+        this.user_name = user_name;
+        this.password = password;
+        this.full_name = full_name;
+        this.position = position;
+    }
+
     public static final String TB_Name = "tb_user";
     public static final String COL_id = "id";
     public static final String COL_user_name = "user_name";

@@ -20,6 +20,8 @@ import com.example.beecar.Database.MyDbHelper;
 import com.example.beecar.Model.User;
 import com.example.beecar.Model.Vehicles;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 //    MyDbHelper myDbHelper;
     UserDAO userDAO;
@@ -36,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        myDbHelper = new MyDbHelper(this);
-//        myDbHelper.getReadableDatabase();
+        admin();
         tvRegister = findViewById(R.id.tv_register);
         dialog  = new LoadingDialog(MainActivity.this);
         tvRegister.setOnTouchListener(new View.OnTouchListener() {
@@ -84,6 +85,20 @@ public class MainActivity extends AppCompatActivity {
 
         for (User obj: userDAO.selectAll()){
             if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
+                if (obj.getPosition() == 0) {
+                    Intent i3 = new Intent(this, NavigationQuanLy.class);
+                    dialog.show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i3);
+                            dialog.dismiss();
+                        }
+                    }, 3000);
+
+                    return;
+                }
                 if (obj.getPosition() == 1) {
                     Intent ic = new Intent(this, HomeClient.class);
                     ic.putExtra("obj",obj);
@@ -145,6 +160,20 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    public void admin(){
+        ArrayList<User> users = new ArrayList<>();
+        userDAO = new UserDAO(this);
+        users.clear();
+        for (User u: userDAO.selectAll()){
+            if (u.getPosition() ==0) {
+                users.add(u);
+            }
+        }
+        if (users.size() == 0) {
+            User admin = new User("adminquanly", "adminquanly", "adminquanly", 0);
+            userDAO.insert(admin);
+        }
+    }
 //        public void addCar(){
 //            VehiclesDAO vehiclesDAO = new VehiclesDAO(this);
 //            if (vehiclesDAO.selectAll().size()<=0){
