@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchVehiclesTuLai">
-
+    tools:context=".SearchVehiclesCoLai">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -100,6 +99,21 @@
                 android:paddingLeft="0dp"
                 android:text="Ngày trả"
                 android:textSize="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:text="TAi XẾ"
+                android:textColor="#FF5722"
+                android:textStyle="bold" />
+
+            <Spinner
+
+                android:id="@+id/spin_driver"
+                android:layout_marginHorizontal="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
 
             <Button
                 android:id="@+id/btn_tim_xe"
@@ -120,8 +134,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

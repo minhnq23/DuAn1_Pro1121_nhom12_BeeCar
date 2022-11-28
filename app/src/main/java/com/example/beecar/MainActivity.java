@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
                 if (obj.getPosition() == 1) {
                     Intent ic = new Intent(this, HomeClient.class);
+                    ic.putExtra("obj",obj);
                     dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(ic);
                             dialog.dismiss();
+
                         }
                     },3000);
 
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (obj.getPosition() == 2) {
                     Intent id = new Intent(this, NavigationDrawerForDriver.class);
+                    id.putExtra("obj",obj);
                         dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override

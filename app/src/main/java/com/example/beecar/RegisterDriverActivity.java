@@ -44,7 +44,6 @@ public class RegisterDriverActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_orange);
 
         driverDAO = new DriverDAO(getApplicationContext());
 
@@ -170,7 +169,7 @@ public class RegisterDriverActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() ==android.R.id.home){
             finish();
         }
         return super.onOptionsItemSelected(item);

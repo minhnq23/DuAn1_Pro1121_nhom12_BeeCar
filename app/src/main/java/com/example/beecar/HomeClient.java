@@ -1,15 +1,66 @@
 package com.example.beecar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.beecar.Fragment.HomeClientFragment;
+import com.example.beecar.Model.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeClient extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_client);
+        bottomNavigationView = findViewById(R.id.bottom_nav_client);
+
+
+
+
+        User user = (User) getIntent().getSerializableExtra("obj");
+        Toast.makeText(this, user.getFull_name()+"", Toast.LENGTH_SHORT).show();
+
+        HomeClientFragment fragmentHome = new HomeClientFragment();
+        Bundle bun = new Bundle();
+        bun.putSerializable("obj",user);
+        fragmentHome.setArguments(bun);
+        replaceFrg(fragmentHome);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.homeclient:
+                            HomeClientFragment fragmentH = new HomeClientFragment();
+                            Bundle bun = new Bundle();
+                            bun.putSerializable("obj",user);
+                            fragmentH.setArguments(bun);
+                            replaceFrg(fragmentH);
+                            break;
+                    }
+                return true;
+            }
+        });
+
+    }
+
+
+    public  void replaceFrg(Fragment frg){
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.fragment_main_home,frg).commit();
 
     }
 }

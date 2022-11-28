@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.util.Log;
@@ -138,6 +139,7 @@ public class RegisterClientActivity extends AppCompatActivity {
                     if (clientDAO.insert(objC)){
                         Toast.makeText(this, "Them thanh cong", Toast.LENGTH_SHORT).show();
                         Log.e("SIZE", clientDAO.selectAll().size()+"");
+                        startActivity(new Intent(this,MainActivity.class));
 
                     }else {
                         Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
