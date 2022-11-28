@@ -36,7 +36,7 @@ public class NavigationQuanLy extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayoutQuanLy, toolbarquanly, R.string.navigationquanly_driver_open, R.string.navigationquanly_driver_close);
         drawerLayoutQuanLy.addDrawerListener(toggle);
         toggle.syncState();
-        ganFragDriver(new CongViecTaiXeFragment());
+        ganFragDriver(new QuanLyXeFragment());
         navDriver.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -68,7 +68,7 @@ public class NavigationQuanLy extends AppCompatActivity {
     }
     public void ganFragDriver(Fragment fg) {
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.framerDrive, fg).commit();
+        fm.beginTransaction().replace(R.id.framerquanly, fg).commit();
     }
 }
 
