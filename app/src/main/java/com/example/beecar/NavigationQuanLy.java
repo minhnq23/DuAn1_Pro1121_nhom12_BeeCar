@@ -18,6 +18,7 @@ import com.example.beecar.Fragment.GioiThieuTaiXeFragment;
 import com.example.beecar.Fragment.HoatDongTaiXeFragment;
 import com.example.beecar.Fragment.QuanLyTaiXeFragment;
 import com.example.beecar.Fragment.QuanLyXeFragment;
+import com.example.beecar.Fragment.ThemXeFragment;
 import com.example.beecar.Fragment.ThongKeTaiXeFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,7 +50,7 @@ public class NavigationQuanLy extends AppCompatActivity {
                         ganFragDriver(new QuanLyTaiXeFragment());
                         break;
                     case R.id.QLXe:
-                        ganFragDriver(new QuanLyXeFragment());
+                        ganFragDriver(new ThemXeFragment());
                         break;
 
                     case R.id.QLGioiThieu:
@@ -69,6 +70,7 @@ public class NavigationQuanLy extends AppCompatActivity {
     public void ganFragDriver(Fragment fg) {
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.framerquanly, fg).commit();
+        drawerLayoutQuanLy.close();
     }
 }
 

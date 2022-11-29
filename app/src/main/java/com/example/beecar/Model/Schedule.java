@@ -4,10 +4,18 @@ public class Schedule {
     int id;
     String start_time;
     String end_time;
+    String dia_diem;
     int driver_id;
     int receipt_id;
-
     public Schedule() {
+    }
+
+    public String getDia_diem() {
+        return dia_diem;
+    }
+
+    public void setDia_diem(String dia_diem) {
+        this.dia_diem = dia_diem;
     }
 
     public int getId() {

@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên xe"
+        android:inputType="textPersonName"
         android:id="@+id/ed_name_car"
         />
     <EditText
@@ -22,29 +23,34 @@
         android:layout_height="wrap_content"
         android:hint="Biển số xe"
         android:id="@+id/ed_bien_car"
+        android:inputType="textPersonName"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Gía xe theo ngày"
         android:id="@+id/ed_price_date"
+        android:inputType="textPersonName"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Giá xe theo giờ"
+        android:inputType="textPersonName"
         android:id="@+id/ed_price_time"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ngày đăng kiểm"
+        android:inputType="textPersonName"
         android:id="@+id/ed_date_kt"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ngày bảo dưỡng"
+        android:inputType="textPersonName"
         android:id="@+id/ed_date_bd"
         />
         <Button

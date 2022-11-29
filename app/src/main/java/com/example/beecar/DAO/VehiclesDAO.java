@@ -30,7 +30,7 @@ public class VehiclesDAO {
     public ArrayList<Vehicles> selectAll(){
         ArrayList<Vehicles> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT *FROM tb_vehicles";
+        String sql = "SELECT*FROM tb_vehicles";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToNext()){
             while (!cursor.isAfterLast()){
@@ -46,7 +46,6 @@ public class VehiclesDAO {
                 objV.setDay_dk(cursor.getString(8));
                 objV.setVehicles_status(cursor.getInt(9));
                 objV.setId_category(cursor.getInt(10));
-
                 list.add(objV);
                 cursor.moveToNext();
             }
@@ -60,12 +59,13 @@ public class VehiclesDAO {
         ContentValues values = new ContentValues();
         values.put(Vehicles.COL_image_car,objV.getImage());
         values.put(Vehicles.COL_name_car,objV.getName_car());
-        values.put(Vehicles.COL_bien_ks,objV.getBien_ks());
         values.put(Vehicles.COL_day_dk, objV.getDay_dk());
+        values.put(Vehicles.COL_bien_ks,objV.getBien_ks());
         values.put(Vehicles.COL_count_muon,objV.getCount_muon());
         values.put(Vehicles.COL_price_time,objV.getPrice_time());
         values.put(Vehicles.COL_price_date,objV.getPrice_date());
         values.put(Vehicles.COL_day_bd,objV.getDay_bd());
+        values.put("vehicles_status",objV.getVehicles_status());
         values.put(Vehicles.COL_id_category,objV.getId_category());
         long row = db.insert(Vehicles.TB_name,null,values);
         return row>0;

@@ -113,10 +113,12 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 showData(datenhan,datetra,strNhan,strTra);
                 //
 
-                adapter = new VehiclesAdapter(list, new ClickItemVehicles() {
+                adapter = new VehiclesAdapter(list,this, new ClickItemVehicles() {
                     @Override
                     public void onClickItemVehicles(Vehicles obj) {
+                        Toast.makeText(SearchVehiclesTuLai.this, "hehe", Toast.LENGTH_SHORT).show();
                         clickItem(obj,datenhan,datetra,strDiaDiem);
+
 
                     }
                 });
@@ -154,11 +156,12 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         receipt.setTotal(total);
         receipt.setDia_diem(diadiem);
         receipt.setClient_id(objC.getId());
-        receipt.setDriver_id(0);
         receipt.setName_driver("");
         receipt.setStatus_driver(0);
         receipt.setVehicles_id(obj.getId());
         Intent intent = new Intent(this,ReceiptActivity.class);
+        intent.putExtra("obj",receipt);
+        startActivity(intent);
 
 
 

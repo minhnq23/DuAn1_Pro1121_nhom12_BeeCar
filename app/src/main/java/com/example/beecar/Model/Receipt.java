@@ -1,6 +1,8 @@
 package com.example.beecar.Model;
 
-public class Receipt {
+import java.io.Serializable;
+
+public class Receipt implements Serializable {
     int id;
     String name_client;
     String name_driver;
@@ -12,7 +14,7 @@ public class Receipt {
     int status;
     int total;
     int client_id;
-    int driver_id;
+
     int vehicles_id;
     public static final String TB_name ="tb_receipt";
     public static final String COL_name_client ="name_client";
@@ -128,11 +130,5 @@ public class Receipt {
         this.vehicles_id = vehicles_id;
     }
 
-    public int getDriver_id() {
-        return driver_id;
-    }
 
-    public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
-    }
 }

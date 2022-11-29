@@ -25,7 +25,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         //car
         String tb_category = "create table if not exists tb_category (id integer primary key autoincrement,name_category string)";
         sqLiteDatabase.execSQL(tb_category);
-        String tb_vehicles = "create table if not exists tb_vehicles (id integer primary key autoincrement,image_car blog,name_car string, bien_ks string,count_muon int,price_time int ,price_date int,day_bd date, day_dk date,vehicles_status int,id_category references tb_category(id)) ";
+        String tb_vehicles = "create table if not exists tb_vehicles (id integer primary key autoincrement,image_car blog,name_car string,bien_ks string,count_muon int,price_time int ,price_date int,day_bd date, day_dk date,vehicles_status int,id_category references tb_category(id)) ";
         sqLiteDatabase.execSQL(tb_vehicles);
 
         // user
@@ -44,7 +44,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         // receipt
         String tb_receipt = "create table if not exists tb_receipt (id integer primary key autoincrement,name_client string,name_driver string,oder_time date, start_time date,end_time date,status_driver int , status_receipt int, total int,dia_diem string , " +
                 "client_id references tb_client(id)," +
-                "driver_id references tb_driver(id)," +
+                "" +
                 "vehicles_id references tb_vehicles(id))";
         sqLiteDatabase.execSQL(tb_receipt);
 

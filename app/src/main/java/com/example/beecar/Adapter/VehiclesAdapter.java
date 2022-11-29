@@ -36,8 +36,9 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.viewho
         notifyDataSetChanged();
     }
 
-    public VehiclesAdapter(List<Vehicles> list,ClickItemVehicles clickItemVehicles) {
+    public VehiclesAdapter(List<Vehicles> list,Context context ,ClickItemVehicles clickItemVehicles) {
         this.list = list;
+        this.context = context;
         this.clickItemVehicles =clickItemVehicles;
     }
 

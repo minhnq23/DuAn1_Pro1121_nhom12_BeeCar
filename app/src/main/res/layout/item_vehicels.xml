@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
-    android:padding="10dp">
+        android:gravity="center"
+    android:padding="5dp">
 <!-- Xe-->
     <LinearLayout
         android:id="@+id/item"
+
         android:paddingBottom="10dp"
+        android:paddingHorizontal="1dp"
         android:background="@drawable/bg_btn_thue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="0dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:scaleType="fitXY"
+            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:src="@drawable/picture5"
@@ -55,9 +58,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="50dp"
                     android:text="850K"
-                    android:gravity="center"
+                    android:gravity="left|center"
                     android:textStyle="bold"
-                    android:textSize="25dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

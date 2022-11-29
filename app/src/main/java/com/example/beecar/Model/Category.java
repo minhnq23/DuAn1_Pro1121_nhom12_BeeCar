@@ -11,7 +11,9 @@ public class Category {
     public static final String COL_name = "name_category";
 
 
-
+    public Category(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;

@@ -13,12 +13,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.beecar.Adapter.SpinAdapter;
 import com.example.beecar.Adapter.VehiclesAdapter;
 import com.example.beecar.DAO.ClientDAO;
 import com.example.beecar.DAO.DriverDAO;
 import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Model.Client;
 import com.example.beecar.Model.Driver;
+import com.example.beecar.Model.User;
 import com.example.beecar.Model.Vehicles;
 
 import java.text.ParsePosition;
@@ -45,11 +47,34 @@ public class SearchVehiclesCoLai extends AppCompatActivity {
     List<Vehicles> list = new ArrayList<>();
     ClientDAO clientDAO;
     Client objC = null;
+    SpinAdapter spinAdapter;
+    List<Driver> driverList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_vehicles_co_lai);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Tìm Xe");
+        ed_dia_diem = findViewById(R.id.ed_đia_diem);
+        ed_date_nhan = findViewById(R.id.date_picker_nhan);
+        ed_date_tra = findViewById(R.id.date_picker_tra);
+        btn_Search = findViewById(R.id.btn_tim_xe);
+        User objU = (User) getIntent().getSerializableExtra("obj");
+        clientDAO = new ClientDAO(this);
+
+        for (Client c: clientDAO.selectAll()){
+            if (c.getUser_id() == objU.getId()){
+                objC = c;
+                break;
+            }
+        }
+
+
     }
 
 

@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.beecar.DAO.CategoryDAO;
 import com.example.beecar.DAO.UserDAO;
 import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Database.MyDbHelper;
+import com.example.beecar.Model.Category;
 import com.example.beecar.Model.User;
 import com.example.beecar.Model.Vehicles;
 
@@ -34,11 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         admin();
+        addcategory();
         tvRegister = findViewById(R.id.tv_register);
         dialog  = new LoadingDialog(MainActivity.this);
         tvRegister.setOnTouchListener(new View.OnTouchListener() {
@@ -71,6 +75,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void addcategory() {
+        CategoryDAO categoryDAO = new CategoryDAO(this);
+        if (categoryDAO.selectAll().size()==0){
+            Category obj1 = new Category("Xe 4 chỗ");
+            categoryDAO.insert(obj1);
+            Category obj2 = new Category("Xe 6 chỗ");
+            categoryDAO.insert(obj2);
+            Category obj3 = new Category("Xe 2 chỗ");
+            categoryDAO.insert(obj3);
+        }
+
+
+
+    }
 
 
     private void loginApp() {
