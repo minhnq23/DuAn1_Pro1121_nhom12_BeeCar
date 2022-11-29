@@ -13,7 +13,9 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.beecar.Fragment.CaNhanFragmet;
 import com.example.beecar.Fragment.HomeClientFragment;
+import com.example.beecar.Fragment.SupportFragment;
 import com.example.beecar.Model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -50,6 +52,15 @@ public class HomeClient extends AppCompatActivity {
                             fragmentH.setArguments(bun);
                             replaceFrg(fragmentH);
                             break;
+                        case R.id.htClient:
+                            SupportFragment frgS = new SupportFragment();
+                            replaceFrg(frgS);
+                            break;
+                        case R.id.ca_nhan:
+                            CaNhanFragmet frgC = new CaNhanFragmet();
+                            replaceFrg(frgC);
+                            break;
+
                     }
                 return true;
             }

@@ -107,7 +107,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 String strDiaDiem = ed_dia_diem.getText().toString().trim();
             String strNhan = ed_date_nhan.getText().toString().trim();
             String strTra = ed_date_tra.getText().toString().trim();
-            try {
+
                 Date datenhan = stringToDate(strNhan);
                 Date datetra = stringToDate(strTra);
                 showData(datenhan,datetra,strNhan,strTra);
@@ -124,9 +124,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 });
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-            }catch (Exception e){
-                Toast.makeText(this, "chưa chọn lịch", Toast.LENGTH_SHORT).show();
-            }
+
 
                 ///
 
@@ -183,10 +181,10 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 return;
             }
         }catch (Exception e){
-            Log.e("Notification","Chưa chọn ngày");
+            Log.e("Notification","Chưa chọn ngày56765765765");
         }
         list.addAll(vehiclesDAO.selectCarStatus0());
-//        list.addAll(vehiclesDAO.selectCarStatus1(strNhan,strTra));
+        list.addAll(vehiclesDAO.selectCarStatus1(strNhan,strTra));
         Log.e("SIZE", list.size()+"");
 
     }

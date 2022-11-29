@@ -17,7 +17,7 @@
         />
     <item
         android:title="Cá nhân"
-        android:id="@+id/driverHome"
+        android:id="@+id/ca_nhan"
         android:icon="@drawable/ic_user2"
         />
 
