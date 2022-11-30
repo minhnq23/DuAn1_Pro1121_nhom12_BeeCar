@@ -5,9 +5,27 @@ public class Schedule {
     String start_time;
     String end_time;
     String dia_diem;
+    int status_schedule;
     int driver_id;
     int receipt_id;
     public Schedule() {
+    }
+
+    public static final String TB_name = "tb_schedule";
+    public static final String COL_id = "id";
+    public static final String COL_dia_diem = "dia_diem";
+    public static final String COL_status = "status_schedule";
+    public static final String COL_start_time = "start_time";
+    public static final String COL_end_time = "end_time";
+    public static final String COL_driver_id = "driver_id";
+    public static final String COL_receipt_id = "driver_id";
+
+    public int getStatus_schedule() {
+        return status_schedule;
+    }
+
+    public void setStatus_schedule(int status_schedule) {
+        this.status_schedule = status_schedule;
     }
 
     public String getDia_diem() {

@@ -36,7 +36,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String tb_client = "create table if not exists  tb_client (id integer primary key autoincrement, user_name string,password string,full_name string, user_id references tb_user(id))";
         sqLiteDatabase.execSQL(tb_client);
             //
-        String tb_schedule = "create table if not exists  tb_schedule (id integer primary key autoincrement, start_time date, end_time date," +
+        String tb_schedule = "create table if not exists  tb_schedule (id integer primary key autoincrement,dia_diem string,status_schedule string, start_time date, end_time date," +
                 "driver_id references tb_driver(id)," +
                 "receipt_id references tb_receipt(id))";
         sqLiteDatabase.execSQL(tb_schedule);
