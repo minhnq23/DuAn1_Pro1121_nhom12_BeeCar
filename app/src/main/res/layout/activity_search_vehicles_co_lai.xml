@@ -5,35 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchVehiclesCoLai">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#FF5722"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
 
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="0dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+           >
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_cl"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="#FF5722"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -46,7 +39,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/ed_đia_diem"
+                android:id="@+id/ed_đia_diem_cl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
@@ -66,7 +59,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/date_picker_nhan"
+                android:id="@+id/date_picker_nhan_cl"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="15dp"
@@ -88,7 +81,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/date_picker_tra"
+                android:id="@+id/date_picker_tra_cl"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="15dp"
@@ -99,24 +92,9 @@
                 android:paddingLeft="0dp"
                 android:text="Ngày trả"
                 android:textSize="20dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                android:text="TAi XẾ"
-                android:textColor="#FF5722"
-                android:textStyle="bold" />
-
-            <Spinner
-
-                android:id="@+id/spin_driver"
-                android:layout_marginHorizontal="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"/>
 
             <Button
-                android:id="@+id/btn_tim_xe"
+                android:id="@+id/btn_tim_xe_cl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -126,13 +104,13 @@
                 android:textColor="@color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recy_vehicles"
+                android:id="@+id/recy_vehicles_cl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
-    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import com.example.beecar.Model.User;
 import com.example.beecar.R;
+import com.example.beecar.SearchVehiclesCoLai;
 import com.example.beecar.SearchVehiclesTuLai;
 
 
 public class HomeClientFragment extends Fragment {
     LinearLayout btn_tu_lai;
+    LinearLayout btn_co_lai;
     TextView tvFullName;
 
 
@@ -36,10 +38,17 @@ public class HomeClientFragment extends Fragment {
         tvFullName.setText(obj.getFull_name());
 
         btn_tu_lai = v.findViewById(R.id.layout_tu_lai);
+        btn_co_lai = v.findViewById(R.id.layout_co_lai);
         btn_tu_lai.setOnClickListener(view -> {
             Intent i = new Intent(getContext(), SearchVehiclesTuLai.class);
             i.putExtra("obj",obj);
             startActivity(i);
+        });
+
+        btn_co_lai.setOnClickListener(view -> {
+            Intent i1 = new Intent(getContext(), SearchVehiclesCoLai.class);
+            i1.putExtra("obj",obj);
+            startActivity(i1);
         });
 
 

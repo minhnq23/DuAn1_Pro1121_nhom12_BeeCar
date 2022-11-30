@@ -104,7 +104,11 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
 
             list.clear();
             //
-                String strDiaDiem = ed_dia_diem.getText().toString().trim();
+            String strDiaDiem = ed_dia_diem.getText().toString().trim();
+            if (strDiaDiem.equals("")){
+                Toast.makeText(this, "chưa nhập địa điểm", Toast.LENGTH_SHORT).show();
+                return;
+            }
             String strNhan = ed_date_nhan.getText().toString().trim();
             String strTra = ed_date_tra.getText().toString().trim();
 
@@ -117,7 +121,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                     @Override
                     public void onClickItemVehicles(Vehicles obj) {
                         Toast.makeText(SearchVehiclesTuLai.this, "hehe", Toast.LENGTH_SHORT).show();
-                        clickItem(obj,datenhan,datetra,strDiaDiem);
+                        clickItem(obj,strNhan,strTra,strDiaDiem);
 
 
                     }
@@ -137,20 +141,24 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
 
     }
 
-    private void clickItem(Vehicles obj,Date dateNhan,Date dateTra,String diadiem) {
-        long diff = dateTra.getTime()- dateNhan.getTime();
+    private void clickItem(Vehicles obj,String dateNhan,String dateTra,String diadiem) {
+        long diff = stringToDate(dateTra).getTime() - stringToDate(dateNhan).getTime();
         long diffDays = diff / (24 * 60 * 60 * 1000);
-        int total = (int) (obj.getPrice_date()*diffDays);
+        int total = 0;
+        if ((stringToDate(dateNhan)+"").equals(stringToDate(dateTra)+"")){
+            total = obj.getPrice_date();
+        }else {
+           total= (int) (obj.getPrice_date()*diffDays);
+        }
 
         Receipt receipt = new Receipt();
         receipt.setName_client(objC.getFull_name());
-
-
         receipt.setStatus(0);
         receipt.setTotal(total);
-        receipt.setOder_time(getToday());
+        receipt.setOder_time(getToday()+"");
         receipt.setStart_time(dateNhan+"");
         receipt.setEnd_time(dateTra+"");
+
         receipt.setTotal(total);
         receipt.setDia_diem(diadiem);
         receipt.setClient_id(objC.getId());
@@ -176,7 +184,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         list.clear();
         try {
 
-            if (!datenhan.before(datetra)){
+            if (!(datenhan.getTime() <= datetra.getTime())){
                 Toast.makeText(this, "Bạn nhập sai ngày trả", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -184,7 +192,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
             Log.e("Notification","Chưa chọn ngày56765765765");
         }
         list.addAll(vehiclesDAO.selectCarStatus0());
-        list.addAll(vehiclesDAO.selectCarStatus1(strNhan,strTra));
+        list.removeAll(vehiclesDAO.selectCarStatus2(strNhan,strTra));
         Log.e("SIZE", list.size()+"");
 
     }
@@ -206,7 +214,6 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         SimpleDateFormat simpledateformat = new SimpleDateFormat("dd/mm/yyyy");
         Date stringDate = simpledateformat.parse(aDate, pos);
         return stringDate;
-
     }
 
 

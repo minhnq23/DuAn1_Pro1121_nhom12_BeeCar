@@ -22,7 +22,7 @@ public class VehiclesDAO {
 
     public VehiclesDAO(Context context) {
         myDbHelper = new MyDbHelper(context);
-        myDbHelper.getReadableDatabase();
+        myDbHelper.getWritableDatabase();
     }
 
 
@@ -69,9 +69,6 @@ public class VehiclesDAO {
         values.put(Vehicles.COL_id_category,objV.getId_category());
         long row = db.insert(Vehicles.TB_name,null,values);
         return row>0;
-
-
-
     }
     public ArrayList<Vehicles> selectCarStatus0(){
         ArrayList<Vehicles> list = new ArrayList<>();
@@ -101,7 +98,7 @@ public class VehiclesDAO {
         return list;
     }
 
-    public ArrayList<Vehicles> selectCarStatus1(String start_time,String end_time ){
+    public ArrayList<Vehicles> selectCarStatus2(String start_time,String end_time ){
         ArrayList<Vehicles> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
         String sql = "SELECT *" +
