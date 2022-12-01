@@ -1,0 +1,56 @@
+package com.example.beecar.DAO;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.example.beecar.Database.MyDbHelper;
+import com.example.beecar.Model.Schedule;
+import com.example.beecar.Model.Trip;
+
+import java.util.ArrayList;
+
+public class TripDAO {
+    MyDbHelper dbHelper;
+    Context context;
+
+    public TripDAO(Context context) {
+        this.context = context;
+        dbHelper = new MyDbHelper(context);
+        dbHelper.getWritableDatabase();
+    }
+
+    public ArrayList<Trip> selectTripOfClient(int id){
+        ArrayList<Trip> list = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "select*from tb_trip where client_id ="+id;
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToNext()){
+            while (!cursor.isAfterLast()){
+              Trip trip = new Trip();
+              trip.setId(cursor.getInt(0));
+              trip.setDia_diem(cursor.getString(1));
+              trip.setStart_time(cursor.getString(2));
+              trip.setEnd_time(cursor.getString(3));
+              trip.setClient_id(cursor.getInt(4));
+              trip.setReceipt_id(cursor.getInt(5));
+            }
+        }
+        Log.e("scheduleListOfDrive",list.size()+"");
+        cursor.close();
+        return list;
+    }
+    public boolean insert(Trip trip){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Trip.COL_dia_diem,trip.getDia_diem());
+        values.put(Trip.COL_start_time,trip.getStart_time());
+        values.put(Trip.COL_end_time,trip.getEnd_time());
+        values.put(Trip.COL_client_id,trip.getClient_id());
+        values.put(Trip.COL_receipt_id,trip.getReceipt_id());
+         long row = db.insert(Trip.TB_name,null,values);
+        return row>0;
+    }
+}

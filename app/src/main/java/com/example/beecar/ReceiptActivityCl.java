@@ -104,7 +104,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
 
         spinAdapter = new SpinAdapter(driverList,this);
         spinner.setAdapter(spinAdapter);
-       
+
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(vehicles.getImage(),0,vehicles.getImage().length);
         imgXe.setImageBitmap(bitmap);
