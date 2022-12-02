@@ -9,7 +9,7 @@ public class Trip {
     int client_id;
     int receipt_id;
     public static final String TB_name = "tb_trip";
-    public static final String COL_dia_diem = "tb_trip";
+    public static final String COL_dia_diem = "dia_diem";
     public static final String COL_start_time = "start_time";
     public static final String COL_end_time = "end_time";
     public static final String COL_status_trip = "status_trip";

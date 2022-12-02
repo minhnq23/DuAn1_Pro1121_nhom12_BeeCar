@@ -116,7 +116,7 @@ public class ReceiptActivity extends AppCompatActivity {
                 updateSatusXe(obj,vehicles);
                 addTrip(obj,client);
                 // chỗ viết code add chuyến đi
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+
                 return;
             }else{
                 Toast.makeText(this, "Dat don khong thanh cong", Toast.LENGTH_SHORT).show();
@@ -132,15 +132,14 @@ public class ReceiptActivity extends AppCompatActivity {
             vehicles.setVehicles_status(2);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-
             }
         }
         if (!(stringToDate(obj.getOder_time()).equals(stringToDate(obj.getStart_time())))){
             vehicles.setVehicles_status(1);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
             }
 
         }
@@ -165,6 +164,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
 
         if (tripDAO.insert(trip)){
+            Toast.makeText(this, "Add_thành công", Toast.LENGTH_SHORT).show();
 
         }else {
             Log.e("ERROR","error add trip");

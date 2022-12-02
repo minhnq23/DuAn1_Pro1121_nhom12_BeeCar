@@ -14,8 +14,12 @@ import com.example.beecar.Adapter.TripAdapter;
 import com.example.beecar.DAO.ClientDAO;
 import com.example.beecar.DAO.TripDAO;
 import com.example.beecar.Model.Client;
+import com.example.beecar.Model.Trip;
 import com.example.beecar.Model.User;
 import com.example.beecar.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TripFragment extends Fragment {
@@ -23,7 +27,8 @@ public class TripFragment extends Fragment {
     TripDAO tripDAO;
     TripAdapter adapter;
     User user;
-    Client client;
+    Client client = null;
+    List<Trip> list = new ArrayList<>();
     ClientDAO clientDAO;
 
 
@@ -47,26 +52,21 @@ public class TripFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         user = (User) getArguments().get("obj");
+        client = new Client();
         for (Client c: clientDAO.selectAll()){
             if (c.getUser_id() == user.getId()){
                 client = c;
                 break;
             }
         }
+        list.clear();
+        list.addAll(tripDAO.selectTripOfClient(client.getId()));
+            adapter = new TripAdapter(list,getContext());
+            recyclerView.setAdapter(adapter);
 
 
 
-        adapter = new TripAdapter(tripDAO.selectTripOfClient(client.getId()),getContext());
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         return view;
     }
 
-    @Override
-    public void onResume() {
-
-       adapter.notifyDataSetChanged();
-        super.onResume();
-
-    }
 }

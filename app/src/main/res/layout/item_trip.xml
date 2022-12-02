@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_weight="1"
     android:layout_height="120dp">
     <LinearLayout
         android:orientation="vertical"
+        android:layout_weight="1"
         android:layout_marginVertical="5dp"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/bg_btn_thue"
@@ -28,7 +30,7 @@
 
                     <TextView
                         android:id="@+id/tv_dia_diem"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="#FF5722"
@@ -51,7 +53,7 @@
 
             <TextView
                 android:id="@+id/tv_day_nhan"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#FF5722"
@@ -74,7 +76,7 @@
 
             <TextView
                 android:id="@+id/tv_day_tra"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#FF5722"
@@ -97,7 +99,7 @@
 
             <TextView
                 android:id="@+id/tv_status_trip"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
 

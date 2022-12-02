@@ -25,7 +25,7 @@ public class TripDAO {
     public ArrayList<Trip> selectTripOfClient(int id){
         ArrayList<Trip> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String sql = "select*from tb_trip where id ="+id;
+        String sql = "select*from tb_trip where client_id="+id;
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToNext()){
             while (!cursor.isAfterLast()){
@@ -37,6 +37,8 @@ public class TripDAO {
               trip.setStatus_trip(cursor.getInt(4));
               trip.setClient_id(cursor.getInt(5));
               trip.setReceipt_id(cursor.getInt(6));
+              list.add(trip);
+              cursor.moveToNext();
             }
         }
         Log.e("scheduleListOfDrive",list.size()+"");

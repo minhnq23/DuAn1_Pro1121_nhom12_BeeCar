@@ -77,9 +77,13 @@ public class HomeClient extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public  void replaceFrg(Fragment frg){
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.fragment_main_home,frg).commit();
-
     }
 }
