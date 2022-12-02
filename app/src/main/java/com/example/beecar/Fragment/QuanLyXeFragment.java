@@ -20,11 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class QuanLyXeFragment extends Fragment {
-    RecyclerView rcvXe;
-    FloatingActionButton fabAddXe;
-    VehiclesDAO vehiclesDAO;
-    List<RecyclerView.Adapter> list;
-    Vehicles vehicles;
+
 
     public QuanLyXeFragment() {
     }
@@ -33,13 +29,6 @@ public class QuanLyXeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_xe, container, false);
-        rcvXe = (RecyclerView) view.findViewById(R.id.rcvXe);
-        fabAddXe = (FloatingActionButton) view.findViewById(R.id.fabAddXe);
-        fabAddXe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        return view;
+      return view;
     }
 }
