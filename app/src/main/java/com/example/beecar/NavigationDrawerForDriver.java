@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.beecar.Fragment.CongViecTaiXeFragment;
 import com.example.beecar.Fragment.GioiThieuTaiXeFragment;
 import com.example.beecar.Fragment.HoatDongTaiXeFragment;
+import com.example.beecar.Fragment.SupportFragment;
 import com.example.beecar.Fragment.ThongKeTaiXeFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -39,7 +40,7 @@ public class NavigationDrawerForDriver extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.driverHome:
+                    case R.id.driverThongTin:
                         intent = new Intent(NavigationDrawerForDriver.this, MainActivity.class);
                         startActivity(intent);
                         break;
@@ -49,11 +50,11 @@ public class NavigationDrawerForDriver extends AppCompatActivity {
                     case R.id.driverActivity:
                         ganFragDriver(new HoatDongTaiXeFragment());
                         break;
-                    case R.id.driverThongKe:
+                    case R.id.driverThuNhap:
                         ganFragDriver(new ThongKeTaiXeFragment());
                         break;
-                    case R.id.driverGioiThieu:
-                        ganFragDriver(new GioiThieuTaiXeFragment());
+                    case R.id.driverTroGiup:
+                        ganFragDriver(new SupportFragment());
                         break;
                     case R.id.driverThoat:
                         NavigationDrawerForDriver.this.finishAffinity();
@@ -69,5 +70,6 @@ public class NavigationDrawerForDriver extends AppCompatActivity {
     public void ganFragDriver(Fragment fg) {
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.framerDrive, fg).commit();
+        drawerLayoutDriver.close();
     }
 }
