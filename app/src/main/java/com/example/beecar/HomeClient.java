@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.beecar.Fragment.CaNhanFragmet;
 import com.example.beecar.Fragment.HomeClientFragment;
 import com.example.beecar.Fragment.SupportFragment;
+import com.example.beecar.Fragment.TripFragment;
 import com.example.beecar.Model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -51,6 +52,13 @@ public class HomeClient extends AppCompatActivity {
                             bun.putSerializable("obj",user);
                             fragmentH.setArguments(bun);
                             replaceFrg(fragmentH);
+                            break;
+                        case R.id.trip_client:
+                            TripFragment tfrg = new TripFragment();
+                            Bundle bunT = new Bundle();
+                            bunT.putSerializable("obj",user);
+                            tfrg.setArguments(bunT);
+                            replaceFrg(tfrg);
                             break;
                         case R.id.htClient:
                             SupportFragment frgS = new SupportFragment();

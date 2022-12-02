@@ -18,11 +18,13 @@ import com.example.beecar.DAO.ClientDAO;
 import com.example.beecar.DAO.DriverDAO;
 import com.example.beecar.DAO.ReceiptDAO;
 import com.example.beecar.DAO.ScheduleDAO;
+import com.example.beecar.DAO.TripDAO;
 import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Model.Client;
 import com.example.beecar.Model.Driver;
 import com.example.beecar.Model.Receipt;
 import com.example.beecar.Model.Schedule;
+import com.example.beecar.Model.Trip;
 import com.example.beecar.Model.Vehicles;
 
 import java.text.ParsePosition;
@@ -30,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ReceiptActivityCl extends AppCompatActivity {
     Toolbar toolbar;
@@ -50,6 +53,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
     DriverDAO driverDAO;
     SpinAdapter spinAdapter;
     Spinner spinner;
+    TripDAO tripDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +140,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
             if (receiptDAO.insert(obj)){
                 updateSatusXe(obj,vehicles);
                 addSchedule(obj,driver);
+                addTrip(obj,client);
                 Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                 // chỗ viết code add chuyến đi
                 return;
@@ -145,6 +150,37 @@ public class ReceiptActivityCl extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+    public void addTrip(Receipt receipt,Client client){
+        tripDAO = new TripDAO(this);
+        Trip trip = new Trip();
+        trip.setDia_diem(receipt.getDia_diem());
+        trip.setStart_time(receipt.getStart_time());
+        trip.setEnd_time(receipt.getEnd_time());
+        trip.setClient_id(client.getId());
+        trip.setReceipt_id(receipt.getId());
+        if (stringToDate(getToday()).getTime() == stringToDate(receipt.getStart_time()).getTime()){
+            trip.setStatus_trip(1);
+        }
+        if (stringToDate(getToday()).getTime() > stringToDate(receipt.getStart_time()).getTime()){
+            trip.setStatus_trip(0);
+        }
+
+
+        if (tripDAO.insert(trip)){
+
+        }else {
+            Log.e("ERROR","error add trip");
+            return;
+        }
+
+
+
+    }
+
 
     private void addSchedule(Receipt obj, Driver driver) {
         scheduleDAO = new ScheduleDAO(this);
@@ -187,7 +223,12 @@ public class ReceiptActivityCl extends AppCompatActivity {
         }
     }
 
-    
+
+
+    private String getToday(){
+        return  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+    }
+
 
     private Date stringToDate(String aDate) {
         if(aDate==null) return null;
