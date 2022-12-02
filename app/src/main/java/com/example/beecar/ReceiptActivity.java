@@ -1,5 +1,6 @@
 package com.example.beecar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -116,7 +118,8 @@ public class ReceiptActivity extends AppCompatActivity {
                 updateSatusXe(obj,vehicles);
                 addTrip(obj,client);
                 // chỗ viết code add chuyến đi
-
+                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                finish();
                 return;
             }else{
                 Toast.makeText(this, "Dat don khong thanh cong", Toast.LENGTH_SHORT).show();
@@ -138,7 +141,7 @@ public class ReceiptActivity extends AppCompatActivity {
             vehicles.setVehicles_status(1);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -164,7 +167,6 @@ public class ReceiptActivity extends AppCompatActivity {
 
 
         if (tripDAO.insert(trip)){
-            Toast.makeText(this, "Add_thành công", Toast.LENGTH_SHORT).show();
 
         }else {
             Log.e("ERROR","error add trip");
@@ -184,7 +186,14 @@ public class ReceiptActivity extends AppCompatActivity {
         SimpleDateFormat simpledateformat = new SimpleDateFormat("dd/mm/yyyy");
         Date stringDate = simpledateformat.parse(aDate, pos);
         return stringDate;
-
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
