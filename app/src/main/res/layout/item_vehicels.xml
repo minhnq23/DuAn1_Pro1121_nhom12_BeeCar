@@ -20,7 +20,7 @@
         <ImageView
             android:scaleType="fitXY"
             android:layout_marginHorizontal="10dp"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="180dp"
             android:src="@drawable/picture5"
             android:id="@+id/img_vehicles"
@@ -59,7 +59,7 @@
                     android:text="850K"
                     android:gravity="left|center"
                     android:textStyle="bold"
-                    android:textSize="15dp" />
+                    android:textSize="25dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,7 +75,6 @@
                     android:paddingVertical="2dp"
                     android:layout_margin="5dp"
                     android:inputType="number"
-
                     android:text="DD/MM/YYYY"
                     android:textSize="18dp"/>
 
@@ -86,8 +85,8 @@
                     android:layout_marginLeft="20dp"
                     android:paddingVertical="2dp"
                     android:layout_margin="5dp"
-                    android:gravity="center"
                     android:text="Số lần thuê"
+                    android:paddingLeft="25dp"
                     android:textSize="18dp"/>
 
 

@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import com.example.beecar.Fragment.CongViecTaiXeFragment;
 import com.example.beecar.Fragment.GioiThieuQuanLyTaiXeFragment;
 import com.example.beecar.Fragment.GioiThieuTaiXeFragment;
 import com.example.beecar.Fragment.HoatDongTaiXeFragment;
+import com.example.beecar.Fragment.QuanLyHoaDonFragment;
 import com.example.beecar.Fragment.QuanLyTaiXeFragment;
 import com.example.beecar.Fragment.QuanLyXeFragment;
 import com.example.beecar.Fragment.ThemXeFragment;
@@ -43,14 +45,13 @@ public class NavigationQuanLy extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.QLHome:
-                        intent = new Intent(NavigationQuanLy.this, MainActivity.class);
-                        startActivity(intent);
+                        ganFragDriver(new QuanLyHoaDonFragment());
                         break;
                     case R.id.QLTaiXe:
                         ganFragDriver(new QuanLyTaiXeFragment());
                         break;
                     case R.id.QLXe:
-                        ganFragDriver(new ThemXeFragment());
+                        ganFragDriver(new QuanLyXeFragment());
                         break;
 
                     case R.id.QLGioiThieu:
