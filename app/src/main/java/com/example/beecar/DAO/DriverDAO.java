@@ -34,9 +34,10 @@ public class DriverDAO {
                 objD.setUser_name(cursor.getString(1));
                 objD.setPassword(cursor.getString(2));
                 objD.setFull_name(cursor.getString(3));
-                objD.setLuongcb(cursor.getInt(4));
-                objD.setStatus_driver(cursor.getInt(5));
-                objD.setUser_id(cursor.getInt(6));
+                objD.setImage_gplx(cursor.getBlob(4));
+                objD.setLuongcb(cursor.getInt(5));
+                objD.setStatus_driver(cursor.getInt(6));
+                objD.setUser_id(cursor.getInt(7));
 
                 list.add(objD);
                 cursor.moveToNext();
