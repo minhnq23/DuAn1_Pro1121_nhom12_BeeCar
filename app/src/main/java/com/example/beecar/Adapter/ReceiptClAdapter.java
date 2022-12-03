@@ -15,7 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beecar.DAO.ReceiptDAO;
+import com.example.beecar.DAO.ScheduleDAO;
+import com.example.beecar.DAO.TripDAO;
 import com.example.beecar.Model.Receipt;
+import com.example.beecar.Model.Schedule;
 import com.example.beecar.R;
 
 import java.util.List;
@@ -54,6 +57,8 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
         holder.tvTotal.setText(receipt.getTotal()+"");
 
         holder.item.setOnClickListener(view -> {
+            ScheduleDAO scheduleDAO = new ScheduleDAO(context);
+            TripDAO tripDAO = new TripDAO(context);
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -64,8 +69,11 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
                 public void onClick(DialogInterface dialogInterface, int i) {
                     receipt.setStatus(1);
                     if (receiptDAO.update(receipt)){
+                        scheduleDAO.delete(receipt.getId());
+                        tripDAO.delete(receipt.getId());
                         Toast.makeText(context, "hủy thành công", Toast.LENGTH_SHORT).show();
                         // xóa trip or  tài xế
+
                     }
 
 
