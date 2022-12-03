@@ -97,6 +97,24 @@ public class ReceiptDAO {
         long row = db.insert(Receipt.TB_name,null,values);
         return row>0;
     }
+    public  boolean update(Receipt objR){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Receipt.COL_name_client,objR.getName_client());
+        values.put(Receipt.COL_name_driver,objR.getName_driver());
+        values.put(Receipt.COL_oder,objR.getOder_time());
+        values.put(Receipt.COL_start,objR.getStart_time());
+        values.put(Receipt.COL_end,objR.getEnd_time());
+        values.put(Receipt.COL_status_driver,objR.getStatus_driver());
+        values.put(Receipt.COL_status,objR.getStatus());
+        values.put(Receipt.COL_total,objR.getTotal());
+        values.put(Receipt.COL_dia_diem,objR.getDia_diem());
+        values.put(Receipt.COL_client_id,objR.getClient_id());
+        values.put(Receipt.COL_vehicles_id,objR.getVehicles_id());
+        int row = db.update(Receipt.TB_name,values,"where id=?", new String[]{objR.getId()+""});
+        return row>0;
+    }
+
 
     public boolean delete(int objV) {
         SQLiteDatabase db = myDbHelper.getWritableDatabase();
