@@ -5,17 +5,27 @@ public class Trip {
     String dia_diem;
     String start_time;
     String end_time;
+    int status_trip;
     int client_id;
     int receipt_id;
     public static final String TB_name = "tb_trip";
-    public static final String COL_dia_diem = "tb_trip";
+    public static final String COL_dia_diem = "dia_diem";
     public static final String COL_start_time = "start_time";
     public static final String COL_end_time = "end_time";
+    public static final String COL_status_trip = "status_trip";
     public static final String COL_client_id = "client_id";
     public static final String COL_receipt_id = "receipt_id";
 
 
     public Trip() {
+    }
+
+    public int getStatus_trip() {
+        return status_trip;
+    }
+
+    public void setStatus_trip(int status_trip) {
+        this.status_trip = status_trip;
     }
 
     public String getDia_diem() {

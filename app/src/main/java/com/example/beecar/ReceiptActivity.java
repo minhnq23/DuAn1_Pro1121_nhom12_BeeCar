@@ -1,5 +1,6 @@
 package com.example.beecar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -7,20 +8,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.beecar.DAO.ClientDAO;
 import com.example.beecar.DAO.ReceiptDAO;
+import com.example.beecar.DAO.TripDAO;
 import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Model.Client;
 import com.example.beecar.Model.Receipt;
+import com.example.beecar.Model.Trip;
 import com.example.beecar.Model.Vehicles;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class ReceiptActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -34,6 +40,8 @@ public class ReceiptActivity extends AppCompatActivity {
     Vehicles vehicles = null;
     ReceiptDAO receiptDAO;
     Client client = null;
+
+    TripDAO tripDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +116,10 @@ public class ReceiptActivity extends AppCompatActivity {
             receiptDAO = new ReceiptDAO(this);
             if (receiptDAO.insert(obj)){
                 updateSatusXe(obj,vehicles);
+                addTrip(obj,client);
                 // chỗ viết code add chuyến đi
+                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                finish();
                 return;
             }else{
                 Toast.makeText(this, "Dat don khong thanh cong", Toast.LENGTH_SHORT).show();
@@ -124,17 +135,14 @@ public class ReceiptActivity extends AppCompatActivity {
             vehicles.setVehicles_status(2);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    return;
             }
         }
         if (!(stringToDate(obj.getOder_time()).equals(stringToDate(obj.getStart_time())))){
             vehicles.setVehicles_status(1);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                return;
+
+
             }
 
         }
@@ -142,13 +150,50 @@ public class ReceiptActivity extends AppCompatActivity {
 
 
 
+    public void addTrip(Receipt receipt,Client client){
+        tripDAO = new TripDAO(this);
+        Trip trip = new Trip();
+        trip.setDia_diem(receipt.getDia_diem());
+        trip.setStart_time(receipt.getStart_time());
+        trip.setEnd_time(receipt.getEnd_time());
+        trip.setClient_id(client.getId());
+        trip.setReceipt_id(receipt.getId());
+        if (stringToDate(getToday()).getTime() == stringToDate(receipt.getStart_time()).getTime()){
+            trip.setStatus_trip(1);
+        }
+        if (stringToDate(getToday()).getTime() > stringToDate(receipt.getStart_time()).getTime()){
+            trip.setStatus_trip(0);
+        }
+
+
+        if (tripDAO.insert(trip)){
+
+        }else {
+            Log.e("ERROR","error add trip");
+            return;
+        }
+
+
+
+    }
+
+    private String getToday(){
+        return  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+    }
     private Date stringToDate(String aDate) {
         if(aDate==null) return null;
         ParsePosition pos = new ParsePosition(0);
         SimpleDateFormat simpledateformat = new SimpleDateFormat("dd/mm/yyyy");
         Date stringDate = simpledateformat.parse(aDate, pos);
         return stringDate;
-
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

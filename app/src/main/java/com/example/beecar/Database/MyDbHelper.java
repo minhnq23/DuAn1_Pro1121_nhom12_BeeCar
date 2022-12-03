@@ -40,7 +40,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 "driver_id references tb_driver(id)," +
                 "receipt_id references tb_receipt(id))";
         sqLiteDatabase.execSQL(tb_schedule);
-        String tb_trip ="create table if not exists  tb_trip (id integer primary key autoincrement,dia_diem string,start_time date, end_time date," +
+        String tb_trip ="create table if not exists  tb_trip (id integer primary key autoincrement,dia_diem string,start_time date, end_time date,status_trip int," +
                 "client_id references tb_client(id)," +
                 "receipt_id references tb_receipt(id))";
         sqLiteDatabase.execSQL(tb_trip);

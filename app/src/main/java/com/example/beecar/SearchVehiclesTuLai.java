@@ -1,5 +1,6 @@
 package com.example.beecar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -167,6 +169,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         receipt.setVehicles_id(obj.getId());
         Intent intent = new Intent(this,ReceiptActivity.class);
         intent.putExtra("obj",receipt);
+        finish();
         startActivity(intent);
 
 
@@ -262,5 +265,12 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 ed_date_tra.setText(str);
             }
         };
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

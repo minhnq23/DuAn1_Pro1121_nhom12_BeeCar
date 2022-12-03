@@ -70,5 +70,12 @@ public class ScheduleDAO {
         return row>0;
     }
 
+    public  boolean delete(int id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int row = db.delete(Schedule.TB_name,"where receipt_id=?",new String[]{id+""});
+        return row>0;
+
+    }
+
 
 }

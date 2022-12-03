@@ -7,7 +7,7 @@
         />
     <item
         android:title="Chuyến đi"
-        android:id="@+id/mapclient"
+        android:id="@+id/trip_client"
         android:icon="@drawable/ic_map2"
         />
     <item

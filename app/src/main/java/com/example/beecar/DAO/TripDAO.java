@@ -25,7 +25,7 @@ public class TripDAO {
     public ArrayList<Trip> selectTripOfClient(int id){
         ArrayList<Trip> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String sql = "select*from tb_trip where client_id ="+id;
+        String sql = "select*from tb_trip where client_id="+id;
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToNext()){
             while (!cursor.isAfterLast()){
@@ -34,8 +34,11 @@ public class TripDAO {
               trip.setDia_diem(cursor.getString(1));
               trip.setStart_time(cursor.getString(2));
               trip.setEnd_time(cursor.getString(3));
-              trip.setClient_id(cursor.getInt(4));
-              trip.setReceipt_id(cursor.getInt(5));
+              trip.setStatus_trip(cursor.getInt(4));
+              trip.setClient_id(cursor.getInt(5));
+              trip.setReceipt_id(cursor.getInt(6));
+              list.add(trip);
+              cursor.moveToNext();
             }
         }
         Log.e("scheduleListOfDrive",list.size()+"");
@@ -48,9 +51,17 @@ public class TripDAO {
         values.put(Trip.COL_dia_diem,trip.getDia_diem());
         values.put(Trip.COL_start_time,trip.getStart_time());
         values.put(Trip.COL_end_time,trip.getEnd_time());
+        values.put(Trip.COL_status_trip,trip.getStatus_trip());
         values.put(Trip.COL_client_id,trip.getClient_id());
         values.put(Trip.COL_receipt_id,trip.getReceipt_id());
          long row = db.insert(Trip.TB_name,null,values);
         return row>0;
+    }
+
+    public  boolean delete(int id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int row = db.delete(Trip.TB_name,"where receipt_id=?",new String[]{id+""});
+        return row>0;
+
     }
 }
