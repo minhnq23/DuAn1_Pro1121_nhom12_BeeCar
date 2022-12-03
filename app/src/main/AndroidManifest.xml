@@ -23,6 +23,13 @@
         android:theme="@style/Theme.BeeCar"
         tools:targetApi="31">
         <activity
+            android:name=".MyHDon_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ReceiptActivityCl"
             android:exported="false">
             <meta-data

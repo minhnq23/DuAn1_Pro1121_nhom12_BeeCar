@@ -145,10 +145,12 @@
             android:layout_height="2dp"
             android:background="#A5A5A5"/>
         <LinearLayout
+            android:id="@+id/hd_myHD"
             android:background="@drawable/custom_canhantv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:onClick="hd_myHD1">
 
             <ImageView
                 android:layout_gravity="center_vertical"
@@ -193,99 +195,51 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#A5A5A5"/>
-        <LinearLayout
-            android:background="@drawable/custom_canhantv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:background="@drawable/custom_canhantv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <ImageView
-                android:layout_gravity="center_vertical"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_hoadonhuy" />
+<!--            <ImageView-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/ic_hoadonhuy" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:orientation="vertical">-->
 
-                <TextView
-                    android:textColor="@color/black"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="hóa đơn đã hủy"
-                    android:textStyle="bold"
-                    android:textSize="22dp" />
+<!--                <TextView-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:paddingLeft="10dp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:text="hóa đơn đã hủy"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="22dp" />-->
 
-                <TextView
-                    android:paddingLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Quản lí thông tin cá nhân"
-                    android:textSize="17dp" />
-            </LinearLayout>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#A5A5A5"/>
-        <LinearLayout
-            android:background="@drawable/custom_canhantv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_gravity="center_vertical"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/car_love_24" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Xe yêu thích"
-                    android:textSize="22dp"
-                    android:textStyle="bold"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Danh sách các xe bạn đã bấm yêu thích"
-                    android:textSize="17dp"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"/>
-            </LinearLayout>
-        </LinearLayout>
+<!--                <TextView-->
+<!--                    android:paddingLeft="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:text="Quản lí thông tin cá nhân"-->
+<!--                    android:textSize="17dp" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -467,7 +421,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#A5A5A5"/>
+            android:background="#A5A5A5"
+            android:layout_marginBottom="50dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"/>

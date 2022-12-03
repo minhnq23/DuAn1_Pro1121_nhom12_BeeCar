@@ -18,8 +18,8 @@ import com.example.beecar.DAO.ReceiptDAO;
 import com.example.beecar.DAO.ScheduleDAO;
 import com.example.beecar.DAO.TripDAO;
 import com.example.beecar.Model.Receipt;
-import com.example.beecar.Model.Schedule;
 import com.example.beecar.R;
+import com.example.beecar.my_interface.ClickItemVehicles;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
     Context context;
     ReceiptDAO receiptDAO;
 
-    public ReceiptClAdapter(List<Receipt> list, Context context) {
+    public ReceiptClAdapter(List<Receipt> list, Context context, ClickItemVehicles aaaaaaa) {
         this.list = list;
         this.context = context;
     }
@@ -36,7 +36,7 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
     @NonNull
     @Override
     public ReceiptClAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_receipt,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_receipt_cl,null);
         return new viewholder(view);
     }
 
@@ -56,41 +56,46 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
         }
         holder.tvTotal.setText(receipt.getTotal()+"");
 
-        holder.item.setOnClickListener(view -> {
-            ScheduleDAO scheduleDAO = new ScheduleDAO(context);
-            TripDAO tripDAO = new TripDAO(context);
-
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Hủy đơn?");
-            builder.setMessage("Bạn có muốn hủy đơn: "+ receipt.getId());
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    receipt.setStatus(1);
-                    if (receiptDAO.update(receipt)){
-                        scheduleDAO.delete(receipt.getId());
-                        tripDAO.delete(receipt.getId());
-                        Toast.makeText(context, "hủy thành công", Toast.LENGTH_SHORT).show();
-                        // xóa trip or  tài xế
-
-                    }
-
-
-
-
-                }
-            });
-            builder.setNegativeButton("khong xoa", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            });
-            // tao dialog
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        });
+//        holder.item.setOnLongClickListener(new View.OnLongClickListener() {
+//
+//            @Override
+//            public boolean onLongClick(View v) {
+//                ScheduleDAO scheduleDAO = new ScheduleDAO(context);
+//                TripDAO tripDAO = new TripDAO(context);
+//
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                builder.setTitle("Hủy đơn?");
+//                builder.setMessage("Bạn có muốn hủy đơn: "+ receipt.getId());
+//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        receipt.setStatus(1);
+//                        if (receiptDAO.update(receipt)){
+//                            scheduleDAO.delete(receipt.getId());
+//                            tripDAO.delete(receipt.getId());
+//                            Toast.makeText(context, "hủy thành công", Toast.LENGTH_SHORT).show();
+//                            // xóa trip or  tài xế
+//
+//                        }
+//
+//
+//
+//
+//                    }
+//                });
+//                builder.setNegativeButton("khong xoa", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.dismiss();
+//                    }
+//                });
+//                // tao dialog
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
+//                return false;
+//            }
+//        });
 
 
 
