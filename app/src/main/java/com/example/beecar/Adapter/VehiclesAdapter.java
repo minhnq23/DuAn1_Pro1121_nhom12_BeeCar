@@ -30,16 +30,15 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.viewho
     Context context;
     ClickItemVehicles clickItemVehicles;
 
-    public VehiclesAdapter(List<Vehicles> list,Context context) {
-        this.list = list;
-        this.context = context;
-        notifyDataSetChanged();
-    }
-
     public VehiclesAdapter(List<Vehicles> list,Context context ,ClickItemVehicles clickItemVehicles) {
         this.list = list;
         this.context = context;
         this.clickItemVehicles =clickItemVehicles;
+    }
+
+    public VehiclesAdapter(Context context, List<Vehicles> list) {
+        this.list = list;
+        this.context = context;
     }
 
     @NonNull

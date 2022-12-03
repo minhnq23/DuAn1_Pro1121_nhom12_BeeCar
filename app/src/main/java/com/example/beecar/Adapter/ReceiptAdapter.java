@@ -8,8 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beecar.DAO.ReceiptDAO;
 import com.example.beecar.Model.Receipt;
@@ -19,93 +23,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ReceiptAdapter extends BaseAdapter {
-    Context context;
-    ReceiptDAO receiptDAO;
+public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.viewholder> {
     List<Receipt> list;
-    ArrayList<HashMap<String,String>> listspinners;
+    Context context;
 
-    public ReceiptAdapter(Context context, List<Receipt> list,ArrayList<HashMap<String,String>>listspinners){
-        this.context=context;
-        receiptDAO= new ReceiptDAO(context);
-        this.list=list;
-        this.listspinners=listspinners;
+    public ReceiptAdapter(Context context, List<Receipt> list) {
+        this.list = list;
+        this.context = context;
     }
+
+    @NonNull
     @Override
-    public int getCount() {
+    public ReceiptAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_receipt, null);
+        return new ReceiptAdapter.viewholder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull viewholder holder, int position) {
+        final Receipt receipt = list.get(position);
+        holder.tvStart.setText("Ngày bắt đầu: " + receipt.getStart_time());
+        holder.tvOder.setText("Ngày đặt xe: " + receipt.getOder_time());
+        holder.tvEnd.setText("Ngày trả xe: " + receipt.getEnd_time());
+        holder.tvStatus.setText("Trạng thái: " + receipt.getStatus()+"");
+        holder.tvTotal.setText("Tổng cộng: " + receipt.getStatus()+"");
+    }
+
+
+    @Override
+    public int getItemCount() {
         return list.size();
     }
+    public class viewholder extends RecyclerView.ViewHolder {
+        LinearLayout item;
+        TextView tvStart;
+        TextView tvOder;
+        TextView tvEnd;
+        TextView tvStatus;
+        TextView tvTotal;
 
-    @Override
-    public Object getItem(int i) {
-        return list.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-    public static class ViewOfItem{
-        TextView tvname_client,tvname_driver,tvoder,tvstart,tvend,tvstatus_driver,tvstatus,
-        tvtotal,tvclient_id,tvdriver_id,tvvehicles_id
-                ;
-        ImageView imgxoa;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewOfItem viewOfItem;
-        if(view==null){
-            viewOfItem = new ViewOfItem();
-            view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_receipt,null,false);
-            viewOfItem.tvstart= view.findViewById(R.id.tvstart);
-            viewOfItem.tvoder= view.findViewById(R.id.tvoder);
-            viewOfItem.tvend= view.findViewById(R.id.tvend);
-            viewOfItem.tvstatus= view.findViewById(R.id.tvstatus);
-            viewOfItem.tvtotal= view.findViewById(R.id.tvtotal);
-            view.setTag(viewOfItem);
-
-        }else {
-            viewOfItem=(ViewOfItem) view.getTag();
+        public viewholder(@NonNull View itemView) {
+            super(itemView);
+            item = itemView.findViewById(R.id.item_receipt);
+            tvStart = itemView.findViewById(R.id.tvstart);
+            tvOder = itemView.findViewById(R.id.tvoder);
+            tvEnd = itemView.findViewById(R.id.tvend);
+            tvStatus = itemView.findViewById(R.id.tvstatusreceipt);
+            tvTotal = itemView.findViewById(R.id.tvtotal);
         }
-        viewOfItem.tvstart.setText(list.get(i).getStart_time());
-        viewOfItem.tvoder.setText(list.get(i).getOder_time());
-        viewOfItem.tvend.setText(list.get(i).getEnd_time());
-        viewOfItem.tvstatus.setText(list.get(i).getStatus());
-        viewOfItem.tvtotal.setText(list.get(i).getTotal());
-        viewOfItem.imgxoa.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder =new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Xóa Receip");
-                builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int id= list.get(i).getId();
-                        if(receiptDAO.delete(id)){
-                            Toast.makeText(context,"Xóa Thành Công",Toast.LENGTH_SHORT).show();
-                            list.clear();
-                            list.addAll(receiptDAO.selectAll());
-                            notifyDataSetInvalidated();
-                    }
-                }
-
-        });
-        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }});
-                AlertDialog dialog= builder.create();
-                dialog.show();
-            }
-
-
-        });
-
-    return view;
     }
 }

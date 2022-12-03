@@ -8,16 +8,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/item_receipt"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="55dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="70dp"
             android:src="@drawable/bill" />
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
@@ -25,11 +26,11 @@
 
             <TextView
                 android:id="@+id/tvstart"
-                android:layout_width="match_parent"
+                android:layout_width="239dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_marginLeft="20dp"
-                android:text="Thời gian bắt đầu "
+                android:layout_marginLeft="10dp"
+                android:text="Bắt đầu: DD/MM/YYYY "
                 android:textSize="22dp" />
 
             <TextView
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="Thời gian đặt xe "
+                android:text="Đặt xe: DD/MM/YYYY   "
                 android:textSize="22dp" />
 
 
@@ -48,16 +49,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="Thời gian trả xe "
+                android:text="Trả xe: DD/MM/YYYY  "
                 android:textSize="22dp" />
 
             <TextView
-                android:id="@+id/tvstatus"
+                android:id="@+id/tvstatusreceipt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="Trạng thái "
+                android:text="Trạng thái: "
                 android:textSize="22dp" />
 
             <TextView
@@ -66,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="Tổng "
+                android:text="Tổng:  "
                 android:textSize="22dp" />
         </LinearLayout>
     </LinearLayout>

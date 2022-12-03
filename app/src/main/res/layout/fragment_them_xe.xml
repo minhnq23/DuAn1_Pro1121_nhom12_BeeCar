@@ -3,18 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Fragment.ThemXeFragment">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Thêm thông tin xe"
+        android:textColor="#FFFFFF"
+        android:background="#FF5722"
+        android:textSize="22dp" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:src="@drawable/picture5"
+        android:src="@drawable/imgdriver"
         android:id="@+id/img_car"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên xe"
+        android:layout_marginTop="20dp"
         android:inputType="textPersonName"
         android:id="@+id/ed_name_car"
         />
@@ -54,12 +65,14 @@
         android:id="@+id/ed_date_bd"
         />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Thêm xe"
             android:id="@+id/btn_add_xe"
+            android:background="@drawable/bg_button_add_xe"
             android:layout_marginTop="5dp"
+            android:textColor="#FFFFFF"
             />
 
 </LinearLayout>
