@@ -111,7 +111,7 @@ public class ReceiptDAO {
         values.put(Receipt.COL_dia_diem,objR.getDia_diem());
         values.put(Receipt.COL_client_id,objR.getClient_id());
         values.put(Receipt.COL_vehicles_id,objR.getVehicles_id());
-        int row = db.update(Receipt.TB_name,values,"where id=?", new String[]{objR.getId()+""});
+        int row = db.update(Receipt.TB_name,values,"where id = ?", new String[]{objR.getId()+""});
         return row>0;
     }
 

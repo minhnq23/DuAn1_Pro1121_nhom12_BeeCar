@@ -66,6 +66,9 @@ public class HomeClient extends AppCompatActivity {
                             break;
                         case R.id.ca_nhan:
                             CaNhanFragmet frgC = new CaNhanFragmet();
+                            Bundle bunCN = new Bundle();
+                            bunCN.putSerializable("obj",user);
+                            frgC.setArguments(bunCN);
                             replaceFrg(frgC);
                             break;
 
