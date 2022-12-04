@@ -1,5 +1,6 @@
 package com.example.beecar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.example.beecar.Adapter.ReceiptAdapter;
 import com.example.beecar.Adapter.ReceiptClAdapter;
@@ -47,16 +49,15 @@ public class MyHDon_Activity extends AppCompatActivity {
                 break;
             }
         }
-        receiptClAdapter = new ReceiptClAdapter(receiptDAOCN.getList(objC),this,new ClickItemVehicles(){
-            @Override
-            public void onClickItemVehicles(Vehicles obj) {
-                Log.e("13123","aaaaaaa");
-
-            }
-        });
+        receiptClAdapter = new ReceiptClAdapter(receiptDAOCN.getList(objC),this);
         recyclerView.setAdapter(receiptClAdapter);
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) finish();
+        return super.onOptionsItemSelected(item);
     }
 
 }

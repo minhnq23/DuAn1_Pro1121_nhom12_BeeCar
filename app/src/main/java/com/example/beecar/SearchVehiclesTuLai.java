@@ -113,10 +113,14 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
             }
             String strNhan = ed_date_nhan.getText().toString().trim();
             String strTra = ed_date_tra.getText().toString().trim();
+                    try {
+                        Date datenhan = stringToDate(strNhan);
+                        Date datetra = stringToDate(strTra);
+                        showData(datenhan,datetra,strNhan,strTra);
+                    }catch (Exception e){
+                        Toast.makeText(this, "Dữ liệu không hợp lệ", Toast.LENGTH_SHORT).show();
+                    }
 
-                Date datenhan = stringToDate(strNhan);
-                Date datetra = stringToDate(strTra);
-                showData(datenhan,datetra,strNhan,strTra);
                 //
 
                 adapter = new VehiclesAdapter(list,this, new ClickItemVehicles() {

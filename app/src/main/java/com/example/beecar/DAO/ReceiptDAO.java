@@ -53,7 +53,37 @@ public class ReceiptDAO {
     public ArrayList<Receipt> getList(Client obj){
         ArrayList<Receipt> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId();
+        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId()+" and status_receipt=0";
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                Receipt objR = new Receipt();
+                objR.setId(cursor.getInt(0));
+                objR.setName_client(cursor.getString(1));
+                objR.setName_driver(cursor.getString(2));
+                objR.setOder_time(cursor.getString(3));
+                objR.setStart_time(cursor.getString(4));
+                objR.setEnd_time(cursor.getString(5));
+                objR.setStatus_driver(cursor.getInt(6));
+                objR.setStatus(cursor.getInt(7));
+                objR.setTotal(cursor.getInt(8));
+                objR.setDia_diem(cursor.getString(9));
+                objR.setClient_id(cursor.getInt(10));
+                objR.setVehicles_id(cursor.getInt(11));
+                list.add(objR);
+                cursor.moveToNext();
+            }
+
+        }
+        cursor.close();
+        return list;
+
+    }
+
+    public ArrayList<Receipt> getListHuy(Client obj){
+        ArrayList<Receipt> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId()+" and status_receipt=1";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
@@ -111,7 +141,7 @@ public class ReceiptDAO {
         values.put(Receipt.COL_dia_diem,objR.getDia_diem());
         values.put(Receipt.COL_client_id,objR.getClient_id());
         values.put(Receipt.COL_vehicles_id,objR.getVehicles_id());
-        int row = db.update(Receipt.TB_name,values,"where id = ?", new String[]{objR.getId()+""});
+        int row = db.update(Receipt.TB_name,values,"id=?",new String[]{objR.getId()+""});
         return row>0;
     }
 

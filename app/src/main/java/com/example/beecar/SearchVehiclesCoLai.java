@@ -108,9 +108,13 @@ public class SearchVehiclesCoLai extends AppCompatActivity {
             String strNhan = ed_date_nhan.getText().toString().trim();
             String strTra = ed_date_tra.getText().toString().trim();
 
-            Date datenhan = stringToDate(strNhan);
-            Date datetra = stringToDate(strTra);
-            showData(datenhan,datetra,strNhan,strTra);
+            try {
+                Date datenhan = stringToDate(strNhan);
+                Date datetra = stringToDate(strTra);
+                showData(datenhan,datetra,strNhan,strTra);
+            }catch (Exception e){
+                Toast.makeText(this, "Dữ liệu không hợp lệ", Toast.LENGTH_SHORT).show();
+            }
             //
             adapter = new VehiclesAdapter(list,this, new ClickItemVehicles() {
                 @Override

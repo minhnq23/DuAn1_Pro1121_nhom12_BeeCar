@@ -42,6 +42,7 @@ public class ReceiptActivity extends AppCompatActivity {
     Client client = null;
 
     TripDAO tripDAO;
+    Receipt receiptData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +116,16 @@ public class ReceiptActivity extends AppCompatActivity {
         findViewById(R.id.btn_dat_xe).setOnClickListener(view -> {
             receiptDAO = new ReceiptDAO(this);
             if (receiptDAO.insert(obj)){
-                updateSatusXe(obj,vehicles);
-                addTrip(obj,client);
+                receiptData = new Receipt();
+                for (Receipt r : receiptDAO.selectAll()){
+                    if (r.getClient_id() ==client.getId()){
+                        receiptData = r;
+                        break;
+                    }
+
+                }
+                updateSatusXe(receiptData,vehicles);
+                addTrip(receiptData,client);
                 // chỗ viết code add chuyến đi
                 Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                 finish();

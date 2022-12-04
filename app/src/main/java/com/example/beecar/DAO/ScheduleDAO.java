@@ -18,13 +18,13 @@ public class ScheduleDAO {
     public ScheduleDAO(Context context) {
         this.context = context;
         dbHelper = new MyDbHelper(context);
-        dbHelper.getReadableDatabase();
+        dbHelper.getWritableDatabase();
     }
 
-    public ArrayList<Schedule> selectOfDriver(int id){
+    public ArrayList<Schedule> selectAll(){
         ArrayList<Schedule> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String sql = "select*from tb_schedule where driver_id ="+id;
+        String sql = "select*from tb_schedule";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToNext()){
             while (!cursor.isAfterLast()){
@@ -36,6 +36,33 @@ public class ScheduleDAO {
                 schedule.setEnd_time(cursor.getString(4));
                 schedule.setDriver_id(cursor.getInt(5));
                 schedule.setReceipt_id(cursor.getInt(6));
+                list.add(schedule);
+                cursor.moveToNext();
+            }
+        }
+        Log.e("scheduleListOfDrive",list.size()+"");
+        cursor.close();
+        return list;
+
+    }
+
+    public ArrayList<Schedule> selectOfDriver(int id){
+        ArrayList<Schedule> list = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "select * from tb_schedule where driver_id="+id;
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                Schedule schedule = new Schedule();
+                schedule.setId(cursor.getInt(0));
+                schedule.setDia_diem(cursor.getString(1));
+                schedule.setStatus_schedule(cursor.getInt(2));
+                schedule.setStart_time(cursor.getString(3));
+                schedule.setEnd_time(cursor.getString(4));
+                schedule.setDriver_id(cursor.getInt(5));
+                schedule.setReceipt_id(cursor.getInt(6));
+                list.add(schedule);
+                cursor.moveToNext();
             }
         }
         Log.e("scheduleListOfDrive",list.size()+"");
@@ -52,6 +79,7 @@ public class ScheduleDAO {
         values.put(Schedule.COL_end_time,obj.getEnd_time());
         values.put(Schedule.COL_driver_id,obj.getDriver_id());
         values.put(Schedule.COL_receipt_id,obj.getReceipt_id());
+        Log.e("id",obj.getDriver_id()+"");
         long row = db.insert(Schedule.TB_name,null,values);
         return row>0;
     }
@@ -72,7 +100,7 @@ public class ScheduleDAO {
 
     public  boolean delete(int id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int row = db.delete(Schedule.TB_name,"where receipt_id=?",new String[]{id+""});
+        int row = db.delete(Schedule.TB_name,"receipt_id=?",new String[]{id+""});
         return row>0;
 
     }

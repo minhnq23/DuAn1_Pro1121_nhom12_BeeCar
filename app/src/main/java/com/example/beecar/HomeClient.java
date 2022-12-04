@@ -1,6 +1,7 @@
 package com.example.beecar;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,5 +89,23 @@ public class HomeClient extends AppCompatActivity {
     public  void replaceFrg(Fragment frg){
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.fragment_main_home,frg).commit();
+    }
+        int count = 0;
+    @Override
+    public void onBackPressed() {
+        count++;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                count = 0;
+            }
+        },3000);
+        Toast.makeText(this, "vuốt thêm lần nữa để thoát", Toast.LENGTH_SHORT).show();
+        if (count == 2) {
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+        }
+
     }
 }

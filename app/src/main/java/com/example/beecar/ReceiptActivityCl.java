@@ -56,6 +56,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
     SpinAdapter spinAdapter;
     Spinner spinner;
     TripDAO tripDAO;
+    Receipt receiptData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,13 +141,24 @@ public class ReceiptActivityCl extends AppCompatActivity {
             receiptDAO = new ReceiptDAO(this);
              driver = (Driver) spinner.getSelectedItem();
             if (receiptDAO.insert(obj)){
-                updateSatusXe(obj,vehicles);
-                addSchedule(obj,driver);
-                addTrip(obj,client);
+                receiptData = new Receipt();
+                for (Receipt r : receiptDAO.selectAll()){
+                    if (r.getClient_id() ==client.getId()){
+                        receiptData = r;
+                        break;
+                    }
+
+                }
+
+
+                addSchedule(receiptData,driver.getId());
+                updateSatusXe(receiptData,vehicles);
+                addTrip(receiptData,client);
                 Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                // chỗ viết code add chuyến đi
                 finish();
-                return;
+               return;
+                // chỗ viết code add chuyến đi
+
             }else{
                 Toast.makeText(this, "Dat don khong thanh cong", Toast.LENGTH_SHORT).show();
                 return;
@@ -185,21 +197,27 @@ public class ReceiptActivityCl extends AppCompatActivity {
     }
 
 
-    private void addSchedule(Receipt obj, Driver driver) {
+    private void addSchedule(Receipt receipt,int driver_id) {
         scheduleDAO = new ScheduleDAO(this);
         Schedule schedule = new Schedule();
-        schedule.setDia_diem(obj.getDia_diem());
-        schedule.setStart_time(obj.getStart_time());
-        schedule.setEnd_time(obj.getStart_time());
-        if (obj.getStart_time().equals(obj.getOder_time())){
+        schedule.setDia_diem(receipt.getDia_diem());
+        schedule.setStart_time(receipt.getStart_time());
+        schedule.setEnd_time(receipt.getEnd_time());
+        if (receipt.getStart_time().equals(receipt.getOder_time())){
             schedule.setStatus_schedule(1);
         }else {
             schedule.setStatus_schedule(0);
         }
-        schedule.setDriver_id(driver.getId());
-        schedule.setReceipt_id(obj.getId());
+        schedule.setDriver_id(driver_id);
+        schedule.setReceipt_id(receipt.getId());
+        Log.e("rêcipt",receipt.getId()+"");
         if (scheduleDAO.insert(schedule)){
             Log.e("Add","Add thành công lịch trình");
+
+
+            Toast.makeText(this, "Add"+schedule.getDriver_id()+" "+scheduleDAO.selectOfDriver(driver_id).size(), Toast.LENGTH_SHORT).show();
+        }else{
+            return;
         }
 
 
@@ -218,8 +236,8 @@ public class ReceiptActivityCl extends AppCompatActivity {
             vehicles.setVehicles_status(1);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                return;
+
+
             }
 
         }

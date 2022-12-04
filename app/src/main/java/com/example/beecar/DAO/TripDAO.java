@@ -27,7 +27,7 @@ public class TripDAO {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String sql = "select*from tb_trip where client_id="+id;
         Cursor cursor = db.rawQuery(sql,null);
-        if (cursor.moveToNext()){
+        if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
               Trip trip = new Trip();
               trip.setId(cursor.getInt(0));
@@ -60,7 +60,7 @@ public class TripDAO {
 
     public  boolean delete(int id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int row = db.delete(Trip.TB_name,"where receipt_id=?",new String[]{id+""});
+        int row = db.delete(Trip.TB_name,"receipt_id=?",new String[]{id+""});
         return row>0;
 
     }

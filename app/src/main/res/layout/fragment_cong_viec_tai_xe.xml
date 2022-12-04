@@ -20,6 +20,7 @@
             android:text="Lịch Trình Của Tôi"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="10dp"
+            android:orientation="vertical"
             android:id="@+id/recy_work"
             android:paddingHorizontal="10dp"
             android:paddingTop="10dp"

@@ -1,6 +1,8 @@
 package com.example.beecar.Model;
 
-public class Driver {
+import java.io.Serializable;
+
+public class Driver implements Serializable {
         int id;
         String user_name;
         String password;

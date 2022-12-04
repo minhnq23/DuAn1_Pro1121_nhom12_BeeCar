@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         for (User obj: userDAO.selectAll()){
             if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
                 if (obj.getPosition() == 0) {
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(i3);
+
                             dialog.dismiss();
                         }
                     }, 3000);
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(ic);
                             dialog.dismiss();
+                            finish();
 
                         }
                     },3000);

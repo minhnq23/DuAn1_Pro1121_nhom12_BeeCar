@@ -18,7 +18,7 @@ public class Schedule {
     public static final String COL_start_time = "start_time";
     public static final String COL_end_time = "end_time";
     public static final String COL_driver_id = "driver_id";
-    public static final String COL_receipt_id = "driver_id";
+    public static final String COL_receipt_id = "receipt_id";
 
     public int getStatus_schedule() {
         return status_schedule;

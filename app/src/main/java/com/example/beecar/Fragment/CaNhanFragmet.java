@@ -1,5 +1,7 @@
 package com.example.beecar.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.beecar.MainActivity;
 import com.example.beecar.Model.User;
 import com.example.beecar.MyHDon_Activity;
+import com.example.beecar.HuyHDon_Activity;
 import com.example.beecar.R;
 
 public class CaNhanFragmet extends Fragment {
     LinearLayout linearLayoutmyHD;
+    LinearLayout huyDon;
+    LinearLayout btn_Dk;
     TextView tv_tentk;
     public CaNhanFragmet() {
     }
@@ -37,6 +43,38 @@ public class CaNhanFragmet extends Fragment {
                 intent.putExtra("obj",obj);
                 startActivity(intent);
             }
+        });
+
+        huyDon = view.findViewById(R.id.huy_don);
+        huyDon.setOnClickListener(view1 -> {
+            Intent intent1 = new Intent(getContext(),HuyHDon_Activity.class);
+            intent1.putExtra("obj",obj);
+            startActivity(intent1);
+        });
+        btn_Dk = view.findViewById(R.id.btn_dang_xuat);
+        btn_Dk.setOnClickListener(view1 -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Đăng xuất");
+            builder.setMessage("Bạn có muốn đăng xuất ? ");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                        getActivity().finish();
+                        startActivity(new Intent(getContext(), MainActivity.class));
+
+
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            // tao dialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
         });
 
         return view;

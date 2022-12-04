@@ -44,10 +44,11 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
     public void onBindViewHolder(@NonNull WorkAdapter.viewholder holder, int position) {
         final Schedule schedule = list.get(position);
         receiptDAO= new ReceiptDAO(context);
+        receipt = new Receipt();
+        receipt = new Receipt();
         for (Receipt obj: receiptDAO.selectAll() ){
             if(obj.getId() == schedule.getReceipt_id()){
                 receipt = obj;
-
             }
         }
         holder.tvDiaDiemDon.setText(schedule.getDia_diem());
@@ -58,7 +59,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
