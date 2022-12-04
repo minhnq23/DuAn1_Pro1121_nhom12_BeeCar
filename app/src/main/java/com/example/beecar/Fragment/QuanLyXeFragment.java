@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.beecar.Adapter.VehiclesAdapter;
+import com.example.beecar.Adapter.VehiclesManagerAdapter;
 import com.example.beecar.DAO.VehiclesDAO;
 import com.example.beecar.Model.Vehicles;
 import com.example.beecar.R;
@@ -25,7 +26,7 @@ public class QuanLyXeFragment extends Fragment {
     RecyclerView rcvXe;
     FloatingActionButton fabAddXe;
     VehiclesDAO vehiclesDAO;
-    VehiclesAdapter adapter;
+    VehiclesManagerAdapter adapter;
     ThemXeFragment themXeFragment;
     List<Vehicles> list;
 
@@ -40,7 +41,7 @@ public class QuanLyXeFragment extends Fragment {
         vehiclesDAO = new VehiclesDAO(getContext());
         list = new ArrayList<>();
         list = vehiclesDAO.selectAll();
-        adapter = new VehiclesAdapter(getContext(), list);
+        adapter = new VehiclesManagerAdapter(getContext(), list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcvXe.setLayoutManager(linearLayoutManager);
         rcvXe.setAdapter(adapter);

@@ -1,76 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_receipt"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/vien_background"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="10dp">
-<!--    Hóa đơn-->
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:id="@+id/item_receipt"
-        android:orientation="horizontal">
+        android:background="@drawable/bg_btn_thue"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="70dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
             android:src="@drawable/bill" />
 
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="5dp"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/tv_id_client_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Mã KH:" />
+
+            <TextView
+                android:id="@+id/tv_dia_diem_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Địa điểm:" />
+
+            <TextView
+                android:id="@+id/tv_start_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Ngày đặt: dd/mm/yyyy" />
+
+            <TextView
+                android:id="@+id/tv_status_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Trang thái:" />
 
 
             <TextView
-                android:id="@+id/tvstart"
-                android:layout_width="239dp"
+                android:id="@+id/tv_total_rec"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="10dp"
-                android:text="Bắt đầu: DD/MM/YYYY "
-                android:textSize="22dp" />
-
-            <TextView
-                android:id="@+id/tvoder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="20dp"
-                android:text="Đặt xe: DD/MM/YYYY   "
-                android:textSize="22dp" />
+                android:layout_marginRight="10dp"
+                android:text="Tổng:" />
 
 
-            <TextView
-                android:id="@+id/tvend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="20dp"
-                android:text="Trả xe: DD/MM/YYYY  "
-                android:textSize="22dp" />
-
-            <TextView
-                android:id="@+id/tvstatusreceipt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="20dp"
-                android:text="Trạng thái: "
-                android:textSize="22dp" />
-
-            <TextView
-                android:id="@+id/tvtotal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="20dp"
-                android:text="Tổng:  "
-                android:textSize="22dp" />
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>
