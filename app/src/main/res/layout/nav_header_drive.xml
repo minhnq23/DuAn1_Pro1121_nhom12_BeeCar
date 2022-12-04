@@ -10,19 +10,20 @@
         android:layout_height="90dp"
         android:src="@drawable/taixe"
         />
+
     <TextView
+        android:id="@+id/ten_tai_xe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
         android:layout_marginTop="5dp"
-        android:textColor="#5E3501"
         android:text="Tên tài xế"
-        android:textStyle="bold"
-        />
+        android:textColor="#5E3501"
+        android:textSize="20dp"
+        android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="taixe01@gmail.com"
+        android:text=""
         android:textSize="16dp"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"

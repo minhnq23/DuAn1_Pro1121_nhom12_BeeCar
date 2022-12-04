@@ -1,5 +1,7 @@
 package com.example.beecar.Fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.beecar.DAO.DriverDAO;
+import com.example.beecar.Model.Driver;
+import com.example.beecar.Model.User;
 import com.example.beecar.R;
 
 /**
@@ -16,15 +23,12 @@ import com.example.beecar.R;
  * create an instance of this fragment.
  */
 public class GioiThieuTaiXeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView tvFullName;
+    private TextView tvLuong;
+    private ImageView img_banglai;
+    private TextView tv_password;
+    private  TextView tv_name;
+    Driver objD = null;
 
     public GioiThieuTaiXeFragment() {
         // Required empty public constructor
@@ -41,26 +45,45 @@ public class GioiThieuTaiXeFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static GioiThieuTaiXeFragment newInstance(String param1, String param2) {
         GioiThieuTaiXeFragment fragment = new GioiThieuTaiXeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gioi_thieu_tai_xe, container, false);
+        View v =inflater.inflate(R.layout.fragment_gioi_thieu_tai_xe, container, false);
+        tvFullName = v.findViewById(R.id.tv_full_nametaixe);
+        tvLuong = v.findViewById(R.id.tv_luong);
+        img_banglai = v.findViewById(R.id.img_banglai);
+        tv_password = v.findViewById(R.id.tv_pass_word);
+        tv_name = v.findViewById(R.id.tv_user_Name);
+
+        User objU = (User) getArguments().get("obj");
+        DriverDAO driverDAO = new DriverDAO(getContext());
+
+        for (Driver d: driverDAO.selectAll()){
+            if (d.getUser_id() == objU.getId()){
+                objD = d ;
+            }
+        }
+        tvFullName.setText(objD.getFull_name());
+        tvLuong.setText(objD.getLuongcb()+"");
+        tv_name.setText(objD.getUser_name());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(objD.getImage_gplx(),0,objD.getImage_gplx().length);
+        tv_password.setText(objD.getPassword());
+        img_banglai.setImageBitmap(bitmap);
+//        tv_password.setOnClickListener( view ->{
+//
+//
+//        });
+
+
+        return v;
     }
 }
