@@ -131,7 +131,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
         tvTotal.setText(obj.getTotal()+"");
 
         if (vehicles.getVehicles_status()==2){
-            tvStatusXe.setText("Đang có người thuê");
+            tvStatusXe.setText("Chưa có người thuê");
             tvStatusXe.setTextColor(Color.RED);
         }else {
             tvStatusXe.setText("chưa có người thuê");
