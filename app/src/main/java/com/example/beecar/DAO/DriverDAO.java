@@ -53,6 +53,7 @@ public class DriverDAO {
         values.put(Driver.COL_user_name,objD.getUser_name());
         values.put(Driver.COL_password,objD.getPassword());
         values.put(Driver.COL_full_name,objD.getFull_name());
+        values.put(Driver.COL_image_gplx,objD.getImage_gplx());
         values.put(Driver.COL_luongcb,objD.getLuongcb());
         values.put(Driver.COL_status,objD.getStatus_driver());
         values.put(Driver.COL_user_id,objD.getUser_id());
@@ -65,6 +66,7 @@ public class DriverDAO {
         values.put(Driver.COL_user_name,objD.getUser_name());
         values.put(Driver.COL_password,objD.getPassword());
         values.put(Driver.COL_full_name,objD.getFull_name());
+        values.put(Driver.COL_image_gplx,objD.getImage_gplx());
         values.put(Driver.COL_luongcb,objD.getLuongcb());
         values.put(Driver.COL_status,objD.getStatus_driver());
         values.put(Driver.COL_user_id,objD.getUser_id());
