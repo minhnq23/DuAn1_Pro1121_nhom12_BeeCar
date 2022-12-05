@@ -35,6 +35,19 @@
                     android:text="Full Name"/>
 
             </LinearLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="200dp"/>
+
+          <me.relex.circleindicator.CircleIndicator
+              android:id="@+id/circle_indicator"
+              android:layout_width="wrap_content"
+              android:layout_height="30dp"
+              android:layout_marginTop="-28dp"
+              android:layout_gravity="center_horizontal"/>
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
