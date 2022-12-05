@@ -3,6 +3,7 @@ package com.example.beecar.Adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,14 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.viewholder
         final Driver driver = list.get(position);
         holder.tvName.setText("Họ tên: "+driver.getFull_name());
         holder.tvId.setText("ID: "+driver.getId()+"");
-        holder.tvStatus.setText("Trạng thái: "+driver.getStatus_driver()+"");
+        if (driver.getStatus_driver()== 0){
+            holder.tvStatus.setText("Trạng thái: Đang rảnh");
+            holder.tvStatus.setTextColor(Color.GREEN);
+        }
+        if (driver.getStatus_driver()==1){
+            holder.tvStatus.setText("Trạng thái: Có công việc");
+            holder.tvStatus.setTextColor(Color.RED);
+        }
 
     }
 

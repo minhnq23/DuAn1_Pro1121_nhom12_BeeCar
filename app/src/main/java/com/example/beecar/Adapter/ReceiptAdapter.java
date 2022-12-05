@@ -3,6 +3,7 @@ package com.example.beecar.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +43,18 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.viewhold
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         final Receipt receipt = list.get(position);
+        holder.tvMaKH.setText("ID Client: "+ receipt.getClient_id());
+        holder.tvDiaDiem.setText("Địa điểm: " +  receipt.getDia_diem());
         holder.tvStart.setText("Ngày bắt đầu: " + receipt.getStart_time());
-        holder.tvOder.setText("Ngày đặt xe: " + receipt.getOder_time());
-        holder.tvEnd.setText("Ngày trả xe: " + receipt.getEnd_time());
-        holder.tvStatus.setText("Trạng thái: " + receipt.getStatus()+"");
-        holder.tvTotal.setText("Tổng cộng: " + receipt.getStatus()+"");
+        if (receipt.getStatus()== 0){
+            holder.tvStatus.setText("Trạng thái: Đã hoàn thành");
+            holder.tvStatus.setTextColor(Color.RED);
+        }
+        if (receipt.getStatus()==1){
+            holder.tvStatus.setText("Trạng thái: Đã hủy");
+            holder.tvStatus.setTextColor(Color.RED);
+        }
+        holder.tvTotal.setText("Tổng cộng: " + receipt.getTotal()+"");
     }
 
 
@@ -56,20 +64,20 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.viewhold
     }
     public class viewholder extends RecyclerView.ViewHolder {
         LinearLayout item;
+        TextView tvMaKH;
+        TextView tvDiaDiem;
         TextView tvStart;
-        TextView tvOder;
-        TextView tvEnd;
         TextView tvStatus;
         TextView tvTotal;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
             item = itemView.findViewById(R.id.item_receipt);
-            tvStart = itemView.findViewById(R.id.tvstart);
-            tvOder = itemView.findViewById(R.id.tvoder);
-            tvEnd = itemView.findViewById(R.id.tvend);
-            tvStatus = itemView.findViewById(R.id.tvstatusreceipt);
-            tvTotal = itemView.findViewById(R.id.tvtotal);
+            tvMaKH = itemView.findViewById(R.id.tv_id_client_rec);
+            tvDiaDiem = itemView.findViewById(R.id.tv_dia_diem_rec);
+            tvStart = itemView.findViewById(R.id.tv_start_rec);
+            tvStatus = itemView.findViewById(R.id.tv_status_rec);
+            tvTotal = itemView.findViewById(R.id.tv_total_rec);
         }
     }
 }
