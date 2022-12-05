@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -89,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void rememberUser(String user, String pass, boolean status){
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (!status){
+            editor.clear();
+        } else {
+            editor.putString("USERNAME", user);
+            editor.putString("PASSWORD", pass);
+            editor.putBoolean("REMEMBER", status);
+        }
+        editor.commit();
+    }
 
 
     private void loginApp() {
@@ -99,69 +112,74 @@ public class MainActivity extends AppCompatActivity {
         String str_Password = ed_password.getText().toString().trim();
 
 
-
-
-
-        for (User obj: userDAO.selectAll()){
-            if (obj.getUser_name().equalsIgnoreCase(str_UserName)&& obj.getPassword().equalsIgnoreCase(str_Password)) {
-                if (obj.getPosition() == 0) {
-                    Intent i3 = new Intent(this, NavigationQuanLy.class);
-                    dialog.show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(i3);
-
-                            dialog.dismiss();
-                            finish();
-                        }
-                    }, 3000);
-
-                    return;
-                }
-                if (obj.getPosition() == 1) {
-                    Intent ic = new Intent(this, HomeClient.class);
-                    ic.putExtra("obj",obj);
-                    dialog.show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(ic);
-                            dialog.dismiss();
-                            finish();
-
-                        }
-                    },3000);
-
-
-                    return;
-                }
-                if (obj.getPosition() == 2) {
-                    Intent id = new Intent(this, NavigationDrawerForDriver.class);
-                    id.putExtra("obj",obj);
+        if (str_Password.isEmpty() || str_UserName.isEmpty()) {
+            ed_userName.setError("Không để trống username");
+            ed_password.setError("Không để trống password");
+        } else {
+            for (User obj : userDAO.selectAll()) {
+                if (obj.getUser_name().equalsIgnoreCase(str_UserName) && obj.getPassword().equalsIgnoreCase(str_Password)) {
+                    if (obj.getPosition() == 0) {
+                        Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        Intent i3 = new Intent(this, NavigationQuanLy.class);
                         dialog.show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i3);
 
-                            id.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(id);
-                            dialog.dismiss();
-                            finish();
-                        }
-                    },3000);
+                                dialog.dismiss();
+                            }
+                        }, 3000);
 
-                    return;
+                        return;
+                    }
+                    if (obj.getPosition() == 1) {
+                        Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        Intent ic = new Intent(this, HomeClient.class);
+                        ic.putExtra("obj", obj);
+                        dialog.show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                ic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(ic);
+                                dialog.dismiss();
+                                finish();
+
+                            }
+                        }, 3000);
+
+
+                        return;
+                    }
+                    if (obj.getPosition() == 2) {
+                        Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        Intent id = new Intent(this, NavigationDrawerForDriver.class);
+                        id.putExtra("obj", obj);
+                        dialog.show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                id.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(id);
+                                dialog.dismiss();
+                            }
+                        }, 3000);
+
+                        return;
+                    }
                 }
+//                else {
+//                    Toast.makeText(this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                }
+
             }
+
+
         }
-
-
-    }
-
 
 
 
@@ -175,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 count = 0;
             }
         },3000);
-        Toast.makeText(this, "vuốt thêm lần để thoát", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ấn 2 lần để thoát", Toast.LENGTH_SHORT).show();
             if (count == 2) {
                 moveTaskToBack(true);
                 android.os.Process.killProcess(android.os.Process.myPid());
