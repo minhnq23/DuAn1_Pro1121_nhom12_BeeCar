@@ -43,18 +43,18 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.viewholder> {
         holder.tvStart.setText(trip.getStart_time());
         holder.tvEnd.setText(trip.getEnd_time());
 
-        if (trip.getStatus_trip() == 0){
-            holder.tvStatus.setText("sắp tới");
-            holder.tvStatus.setTextColor(Color.GREEN);
-        }
-        if (trip.getStatus_trip() == 1){
-            holder.tvStatus.setText("hôm nay");
-            holder.tvStatus.setTextColor(Color.YELLOW);
-        }
-        if (trip.getStatus_trip() == 2){
-            holder.tvStatus.setText("đã kết thúc");
-            holder.tvStatus.setTextColor(Color.RED);
-        }
+//        if (trip.getStatus_trip() == 0){
+//            holder.tvStatus.setText("sắp tới");
+//            holder.tvStatus.setTextColor(Color.GREEN);
+//        }
+//        if (trip.getStatus_trip() == 1){
+//            holder.tvStatus.setText("hôm nay");
+//            holder.tvStatus.setTextColor(Color.YELLOW);
+//        }
+//        if (trip.getStatus_trip() == 2){
+//            holder.tvStatus.setText("đã kết thúc");
+//            holder.tvStatus.setTextColor(Color.RED);
+//        }
 
 
     }
@@ -74,7 +74,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.viewholder> {
             tvDiaDiem = itemView.findViewById(R.id.tv_dia_diem);
             tvStart = itemView.findViewById(R.id.tv_day_nhan);
             tvEnd = itemView.findViewById(R.id.tv_day_tra);
-            tvStatus = itemView.findViewById(R.id.tv_status_trip);
+//            tvStatus = itemView.findViewById(R.id.tv_status_trip);
         }
     }
 

@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(i3);
 
                             dialog.dismiss();
+                            finish();
                         }
                     }, 3000);
 
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                             id.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(id);
                             dialog.dismiss();
+                            finish();
                         }
                     },3000);
 
@@ -173,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 count = 0;
             }
         },3000);
-        Toast.makeText(this, "ấn 2 lần để thoát", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "vuốt thêm lần để thoát", Toast.LENGTH_SHORT).show();
             if (count == 2) {
                 moveTaskToBack(true);
                 android.os.Process.killProcess(android.os.Process.myPid());

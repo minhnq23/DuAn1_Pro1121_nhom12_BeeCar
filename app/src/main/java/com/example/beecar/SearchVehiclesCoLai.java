@@ -146,7 +146,8 @@ public class SearchVehiclesCoLai extends AppCompatActivity {
                 return;
             }
         }catch (Exception e){
-            Log.e("Notification","Bạn chưa chọn ngày");
+            Toast.makeText(this, "Bạn chưa chọn ngày", Toast.LENGTH_SHORT).show();
+            return;
         }
         list.addAll(vehiclesDAO.selectAll());
         list.removeAll(vehiclesDAO.selectCarStatus2(strNhan,strTra));

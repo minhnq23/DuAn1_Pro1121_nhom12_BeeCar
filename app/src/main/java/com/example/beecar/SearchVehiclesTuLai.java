@@ -118,7 +118,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                         Date datetra = stringToDate(strTra);
                         showData(datenhan,datetra,strNhan,strTra);
                     }catch (Exception e){
-                        Toast.makeText(this, "Dữ liệu không hợp lệ", Toast.LENGTH_SHORT).show();
+
                     }
 
                 //
@@ -196,7 +196,8 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 return;
             }
         }catch (Exception e){
-            Log.e("Notification","Chưa chọn ngày56765765765");
+            Toast.makeText(this, " Bạn chưa chọn ngày", Toast.LENGTH_SHORT).show();
+            return;
         }
         list.addAll(vehiclesDAO.selectCarStatus0());
         list.removeAll(vehiclesDAO.selectCarStatus2(strNhan,strTra));
