@@ -90,18 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void rememberUser(String user, String pass, boolean status){
-        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (!status){
-            editor.clear();
-        } else {
-            editor.putString("USERNAME", user);
-            editor.putString("PASSWORD", pass);
-            editor.putBoolean("REMEMBER", status);
-        }
-        editor.commit();
-    }
+
 
 
     private void loginApp() {
@@ -112,10 +101,6 @@ public class MainActivity extends AppCompatActivity {
         String str_Password = ed_password.getText().toString().trim();
 
 
-        if (str_Password.isEmpty() || str_UserName.isEmpty()) {
-            ed_userName.setError("Không để trống username");
-            ed_password.setError("Không để trống password");
-        } else {
             for (User obj : userDAO.selectAll()) {
                 if (obj.getUser_name().equalsIgnoreCase(str_UserName) && obj.getPassword().equalsIgnoreCase(str_Password)) {
                     if (obj.getPosition() == 0) {
@@ -179,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        }
+
 
 
 
