@@ -9,9 +9,8 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="800dp"
-            android:orientation="vertical"
-            android:background="#FAF0E6">
+            android:layout_height="200dp"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
@@ -35,7 +34,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="55dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:paddingLeft="10dp"
                         android:text="Tên tài khoản"
@@ -45,10 +44,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hôm nay cũng làm việc thật tốt nhé !"
+                        android:text="Chúc một ngày tốt lành !"
                         android:textSize="18dp"
+                        android:textStyle="bold"
                         android:layout_marginLeft="20dp"
-                        android:textColor="#FF0000"
+                        android:textColor="#FF8C00"
                         />
 
                 </LinearLayout>
@@ -101,7 +101,7 @@
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_marginLeft="20dp"
-                        android:text="Quản lí thông tin khách hàng"
+                        android:text="Quản lí thông tin quản lý"
                         android:textSize="17dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -354,7 +354,7 @@
             <!--            android:background="#A5A5A5"/>-->
             <LinearLayout
 
-                android:id="@+id/btn_dang_xuat"
+                android:id="@+id/btn_dang_xuat_quanly"
                 android:background="@drawable/custom_canhantv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

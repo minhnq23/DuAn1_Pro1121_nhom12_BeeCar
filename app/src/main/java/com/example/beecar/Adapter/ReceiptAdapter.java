@@ -46,9 +46,10 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.viewhold
         holder.tvMaKH.setText("ID Client: "+ receipt.getClient_id());
         holder.tvDiaDiem.setText("Địa điểm: " +  receipt.getDia_diem());
         holder.tvStart.setText("Ngày bắt đầu: " + receipt.getStart_time());
+        holder.tvEnd.setText("Ngày kết thúc: " + receipt.getEnd_time());
         if (receipt.getStatus()== 0){
-            holder.tvStatus.setText("Trạng thái: Đã hoàn thành");
-            holder.tvStatus.setTextColor(Color.RED);
+            holder.tvStatus.setText("Trạng thái: Đã tạo đơn");
+            holder.tvStatus.setTextColor(Color.GREEN);
         }
         if (receipt.getStatus()==1){
             holder.tvStatus.setText("Trạng thái: Đã hủy");
@@ -67,6 +68,7 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.viewhold
         TextView tvMaKH;
         TextView tvDiaDiem;
         TextView tvStart;
+        TextView tvEnd;
         TextView tvStatus;
         TextView tvTotal;
 
@@ -76,6 +78,7 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.viewhold
             tvMaKH = itemView.findViewById(R.id.tv_id_client_rec);
             tvDiaDiem = itemView.findViewById(R.id.tv_dia_diem_rec);
             tvStart = itemView.findViewById(R.id.tv_start_rec);
+            tvEnd = itemView.findViewById(R.id.tv_end_rec);
             tvStatus = itemView.findViewById(R.id.tv_status_rec);
             tvTotal = itemView.findViewById(R.id.tv_total_rec);
         }
