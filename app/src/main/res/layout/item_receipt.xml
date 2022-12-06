@@ -49,6 +49,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="Ngày đặt: dd/mm/yyyy" />
+            <TextView
+                android:id="@+id/tv_end_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Ngày kết thúc: dd/mm/yyyy" />
 
             <TextView
                 android:id="@+id/tv_status_rec"
