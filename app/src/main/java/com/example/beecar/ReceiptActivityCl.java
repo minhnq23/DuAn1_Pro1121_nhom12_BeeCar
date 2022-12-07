@@ -32,6 +32,7 @@ import com.example.beecar.Model.Vehicles;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -108,6 +109,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
         driverDAO = new DriverDAO(this);
         driverList.clear();
         driverList.addAll(driverDAO.selectAll());
+//        driverList.removeAll();
 
         spinAdapter = new SpinAdapter(driverList,this);
         spinner.setAdapter(spinAdapter);
@@ -137,22 +139,32 @@ public class ReceiptActivityCl extends AppCompatActivity {
             tvStatusXe.setText("chưa có người thuê");
             tvStatusXe.setTextColor(Color.GREEN);
         }
+
+        List<Integer> listId = new ArrayList<>();
         findViewById(R.id.btn_dat_xe).setOnClickListener(view -> {
             receiptDAO = new ReceiptDAO(this);
              driver = (Driver) spinner.getSelectedItem();
             if (receiptDAO.insert(obj)){
                 receiptData = new Receipt();
                 for (Receipt r : receiptDAO.selectAll()){
-                    if (r.getClient_id() ==client.getId()){
-                        receiptData = r;
-                        break;
-                    }
+                    listId.add(r.getId());
 
                 }
 
+                int idMax = Collections.max(listId);
 
-                addSchedule(receiptData,driver.getId());
+                for (Receipt objR: receiptDAO.selectAll()){
+                    if (objR.getId() == idMax && objR.getClient_id() == client.getId()){
+                        receiptData = objR;
+                        break;
+                    }
+                }
+
+
+
                 updateSatusXe(receiptData,vehicles);
+                addSchedule(receiptData,driver.getId());
+                updateStatusDriver(driver, receiptData);
                 addTrip(receiptData,client);
                 Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                 finish();
@@ -166,7 +178,18 @@ public class ReceiptActivityCl extends AppCompatActivity {
         });
     }
 
+    private void updateStatusDriver(Driver driver,Receipt obj) {
 
+            driver.setStatus_driver(1);
+            if (driverDAO.update(driver)) {
+                Log.e("Update","update status driver");
+
+            }
+
+
+
+
+    }
 
 
     public void addTrip(Receipt receipt,Client client){
@@ -224,21 +247,10 @@ public class ReceiptActivityCl extends AppCompatActivity {
     }
 
     private void updateSatusXe(Receipt obj, Vehicles vehicles) {
-
-        if (stringToDate(obj.getOder_time()).equals(stringToDate(obj.getStart_time()))){
-            vehicles.setVehicles_status(2);
-            vehicles.setCount_muon(vehicles.getCount_muon()+1);
-            if (vehiclesDAO.update(vehicles)){
-                Log.e("Update","update status");
-            }
-        }
-        if (!(stringToDate(obj.getOder_time()).equals(stringToDate(obj.getStart_time())))){
             vehicles.setVehicles_status(1);
             vehicles.setCount_muon(vehicles.getCount_muon()+1);
             if (vehiclesDAO.update(vehicles)){
-
-
-            }
+                Log.e("Update","update status");
 
         }
     }
@@ -246,17 +258,16 @@ public class ReceiptActivityCl extends AppCompatActivity {
 
 
     private String getToday(){
-        return  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        return  new SimpleDateFormat("hh:mm dd/MM/yyyy", Locale.getDefault()).format(new Date());
     }
 
 
     private Date stringToDate(String aDate) {
         if(aDate==null) return null;
         ParsePosition pos = new ParsePosition(0);
-        SimpleDateFormat simpledateformat = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("hh:mm dd/MM/yyyy");
         Date stringDate = simpledateformat.parse(aDate, pos);
         return stringDate;
-
     }
 
     @Override

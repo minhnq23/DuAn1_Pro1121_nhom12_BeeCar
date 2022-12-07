@@ -122,13 +122,13 @@ public class ScheduleDAO {
         values.put(Schedule.COL_end_time,obj.getEnd_time());
         values.put(Schedule.COL_driver_id,obj.getDriver_id());
         values.put(Schedule.COL_receipt_id,obj.getReceipt_id());
-        int row = db.update(Schedule.TB_name,values,"where id=?",new String[]{obj.getId()+""});
+        int row = db.update(Schedule.TB_name,values,"id=?",new String[]{obj.getId()+""});
         return row>0;
     }
 
     public  boolean delete(int id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int row = db.delete(Schedule.TB_name,"receipt_id=?",new String[]{id+""});
+        int row = db.delete(Schedule.TB_name,"id=?",new String[]{id+""});
         return row>0;
 
     }

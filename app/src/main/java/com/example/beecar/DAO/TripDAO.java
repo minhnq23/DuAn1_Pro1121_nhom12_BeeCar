@@ -60,7 +60,7 @@ public class TripDAO {
 
     public  boolean delete(int id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int row = db.delete(Trip.TB_name,"receipt_id=?",new String[]{id+""});
+        int row = db.delete(Trip.TB_name,"id=?",new String[]{id+""});
         return row>0;
 
     }

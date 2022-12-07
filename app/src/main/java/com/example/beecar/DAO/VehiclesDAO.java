@@ -89,7 +89,6 @@ public class VehiclesDAO {
                 objV.setDay_dk(cursor.getString(8));
                 objV.setVehicles_status(cursor.getInt(9));
                 objV.setId_category(cursor.getInt(10));
-
                 list.add(objV);
                 cursor.moveToNext();
             }
