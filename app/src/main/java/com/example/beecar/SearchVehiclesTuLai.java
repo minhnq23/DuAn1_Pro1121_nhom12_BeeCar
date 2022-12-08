@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.beecar.Adapter.VehiclesAdapter;
@@ -44,6 +46,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
     Toolbar toolbar;
     EditText ed_dia_diem;
     TextView ed_date_nhan;
+    TextView timeNhan;
     TextView ed_date_tra;
     Button btn_Search;
 
@@ -55,6 +58,8 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
     List<Vehicles> list = new ArrayList<>();
     ClientDAO clientDAO;
     Client objC = null;
+    String dayNhan = "";
+    String dayTra ="";
 
 
     @Override
@@ -68,6 +73,8 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         ed_dia_diem = findViewById(R.id.ed_đia_diem);
         ed_date_nhan = findViewById(R.id.date_picker_nhan);
         ed_date_tra = findViewById(R.id.date_picker_tra);
+        timeNhan = findViewById(R.id.tv_hour_nhan);
+
         btn_Search = findViewById(R.id.btn_tim_xe);
         User objU = (User) getIntent().getSerializableExtra("obj");
         clientDAO = new ClientDAO(this);
@@ -91,7 +98,9 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
 
 
 
-
+        timeNhan.setOnClickListener(view -> {
+            showDialogTime();
+        });
         ed_date_nhan.setOnClickListener(view -> {
           showDialogPickerNhan();
 
@@ -104,6 +113,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
 
         btn_Search.setOnClickListener(view -> {
 
+
             list.clear();
             //
             String strDiaDiem = ed_dia_diem.getText().toString().trim();
@@ -111,12 +121,12 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 Toast.makeText(this, "chưa nhập địa điểm", Toast.LENGTH_SHORT).show();
                 return;
             }
-            String strNhan = ed_date_nhan.getText().toString().trim();
-            String strTra = ed_date_tra.getText().toString().trim();
+            String strNhan =  timeNhan.getText()+" "+ed_date_nhan.getText();
+            String strTra = ed_date_tra.getText().toString();
                     try {
                         Date datenhan = stringToDate(strNhan);
                         Date datetra = stringToDate(strTra);
-                        showData(datenhan,datetra,strNhan,strTra);
+                        showData(datenhan,datetra,dayNhan,dayTra);
                     }catch (Exception e){
 
                     }
@@ -181,7 +191,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
     }
 
     private String getToday(){
-        return  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        return  new SimpleDateFormat("hh:mm dd/MM/yyyy", Locale.getDefault()).format(new Date());
     }
 
 
@@ -219,7 +229,7 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
     private Date stringToDate(String aDate) {
         if(aDate==null) return null;
         ParsePosition pos = new ParsePosition(0);
-        SimpleDateFormat simpledateformat = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("hh:mm dd/MM/yyyy");
         Date stringDate = simpledateformat.parse(aDate, pos);
         return stringDate;
     }
@@ -234,42 +244,59 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
         int year = cal1.get(Calendar.YEAR);
         int month = cal1.get(Calendar.MONTH);
         int day = cal1.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog dialog1 = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDat1,year,month,day);
-        dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        dialog1.isShowing();
-        dialog1.show();
-        mDat1 = new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dialog1 = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 i1 = i1+1;
                 String str = i2+"/"+i1+"/"+i;
-            ed_date_nhan.setText(str);
+                dayNhan = str;
+                ed_date_nhan.setText(str);
             }
-        };
+        },year,month,day);
+        dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog1.show();
     }
 
 
 
 
+    private void showDialogTime(){
+
+       int hour = 23;
+       int minute = 55;
+       boolean is24Hours = true;
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                String str = hour+":"+minute;
+
+                timeNhan.setText(str);
+
+            }
+        },hour,minute,is24Hours);
+        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        timePickerDialog.show();
+    }
 
     private void showDialogPickerTra() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDat,year,month,day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        dialog.show();
-        mDat = new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 i1 = i1+1;
                 String str = i2+"/"+i1+"/"+i;
-                ed_date_tra.setText(str);
+                dayTra = str;
+                ed_date_tra.setText( timeNhan.getText()+" "+str);
             }
-        };
+        },year,month,day);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+
+        dialog.show();
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

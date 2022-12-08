@@ -18,15 +18,20 @@ import com.example.beecar.DAO.ReceiptDAO;
 import com.example.beecar.DAO.ScheduleDAO;
 import com.example.beecar.DAO.TripDAO;
 import com.example.beecar.Model.Receipt;
+import com.example.beecar.Model.Schedule;
+import com.example.beecar.Model.Trip;
 import com.example.beecar.R;
 import com.example.beecar.my_interface.ClickItemVehicles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.viewholder> {
     List<Receipt> list;
     Context context;
     ReceiptDAO receiptDAO;
+    Trip trip;
+    Schedule schedule;
 
     public ReceiptClAdapter(List<Receipt> list, Context context) {
         this.list = list;
@@ -62,6 +67,7 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
             public boolean onLongClick(View v) {
                 ScheduleDAO scheduleDAO = new ScheduleDAO(context);
                 TripDAO tripDAO = new TripDAO(context);
+                trip = new Trip();
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -71,10 +77,23 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         receipt.setStatus(1);
-                        if (receiptDAO.update(receipt)){
+                        for (Trip t: tripDAO.selectTripOfClient(receipt.getClient_id())){
+                            if (t.getReceipt_id()== receipt.getId()){
+                                trip = t;
+                                break;
+                            }
+                        }
 
-                            scheduleDAO.delete(receipt.getId());
-                            tripDAO.delete(receipt.getId());
+                        for (Schedule s:scheduleDAO.selectAll()){
+                            if (s.getReceipt_id()== receipt.getId()){
+                                schedule = s;
+                                break;
+                            }
+                        }
+
+                        if (receiptDAO.update(receipt)){
+                            scheduleDAO.delete(schedule.getId());
+                            tripDAO.delete(trip.getId());//ok
                             Toast.makeText(context, "hủy thành công", Toast.LENGTH_SHORT).show();
                             // xóa trip or  tài xế
 
