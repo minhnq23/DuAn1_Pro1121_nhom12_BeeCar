@@ -52,7 +52,7 @@ public class ScheduleDAO {
     public ArrayList<Schedule> selectOfDriver(int id){
         ArrayList<Schedule> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String sql = "select * from tb_schedule where driver_id="+id;
+        String sql = "select * from tb_schedule where driver_id="+id+" and status_schedule = 1";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){

@@ -1,6 +1,7 @@
 package com.example.beecar.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
     List<Schedule> list ;
     Context context;
     ReceiptDAO receiptDAO ;
-    Receipt receipt =null;
+    Receipt receipt = null;
+
 
 
 
@@ -44,13 +46,15 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
     public void onBindViewHolder(@NonNull WorkAdapter.viewholder holder, int position) {
         final Schedule schedule = list.get(position);
         receiptDAO= new ReceiptDAO(context);
-        receipt = new Receipt();
-        receipt = new Receipt();
-        for (Receipt obj: receiptDAO.selectAll() ){
-            if(obj.getId() == schedule.getReceipt_id()){
-                receipt = obj;
+
+        Log.e("size",receiptDAO.selectAllFull().size()+"");
+        for (Receipt obj: receiptDAO.selectAllFull() ){
+            if(schedule.getReceipt_id() == obj.getId()){
+               receipt = obj;
+                break;
             }
         }
+        Log.e("receipt id",receipt.getId()+"");
         holder.tvDiaDiemDon.setText(schedule.getDia_diem());
         holder.tvStart.setText(schedule.getStart_time());
         holder.tvEnd.setText(schedule.getEnd_time());

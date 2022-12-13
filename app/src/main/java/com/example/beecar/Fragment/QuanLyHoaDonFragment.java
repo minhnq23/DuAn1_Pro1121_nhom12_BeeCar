@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.beecar.Adapter.ReceiptAdapter;
+import com.example.beecar.Adapter.ReceiptManagerAdapter;
 import com.example.beecar.DAO.ReceiptDAO;
 import com.example.beecar.Model.Receipt;
 import com.example.beecar.R;
@@ -22,7 +23,7 @@ import java.util.List;
 public class QuanLyHoaDonFragment extends Fragment {
     RecyclerView rcvHD;
     ReceiptDAO receiptDAO;
-    ReceiptAdapter adapter;
+    ReceiptManagerAdapter adapter;
     List<Receipt> list;
 
 
@@ -38,7 +39,7 @@ public class QuanLyHoaDonFragment extends Fragment {
         receiptDAO = new ReceiptDAO(getContext());
         list = new ArrayList<>();
         list = receiptDAO.selectAll();
-        adapter = new ReceiptAdapter(getContext(), list);
+        adapter = new ReceiptManagerAdapter(list,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcvHD.setLayoutManager(linearLayoutManager);
         rcvHD.setAdapter(adapter);

@@ -200,9 +200,6 @@ public class ReceiptActivityCl extends AppCompatActivity {
         trip.setEnd_time(receipt.getEnd_time());
         trip.setClient_id(client.getId());
         trip.setReceipt_id(receipt.getId());
-        if (stringToDate(getToday()).getTime() == stringToDate(receipt.getStart_time()).getTime()){
-            trip.setStatus_trip(1);
-        }
         if (stringToDate(getToday()).getTime() > stringToDate(receipt.getStart_time()).getTime()){
             trip.setStatus_trip(0);
         }
@@ -226,11 +223,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
         schedule.setDia_diem(receipt.getDia_diem());
         schedule.setStart_time(receipt.getStart_time());
         schedule.setEnd_time(receipt.getEnd_time());
-        if (receipt.getStart_time().equals(receipt.getOder_time())){
-            schedule.setStatus_schedule(1);
-        }else {
-            schedule.setStatus_schedule(0);
-        }
+        schedule.setStatus_schedule(0);
         schedule.setDriver_id(driver_id);
         schedule.setReceipt_id(receipt.getId());
         Log.e("rêcipt",receipt.getId()+"");

@@ -59,6 +59,10 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
             holder.tvStatus.setText("đã hủy");
             holder.tvStatus.setTextColor(Color.RED);
         }
+        if (receipt.getStatus() == 2) {
+            holder.tvStatus.setText("đã xác nhận");
+            holder.tvStatus.setTextColor(Color.BLUE);
+        }
         holder.tvTotal.setText(receipt.getTotal()+"");
 
         holder.item.setOnLongClickListener(new View.OnLongClickListener() {
@@ -95,6 +99,8 @@ public class ReceiptClAdapter extends RecyclerView.Adapter<ReceiptClAdapter.view
                             scheduleDAO.delete(schedule.getId());
                             tripDAO.delete(trip.getId());//ok
                             Toast.makeText(context, "hủy thành công", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                            return;
                             // xóa trip or  tài xế
 
                         }

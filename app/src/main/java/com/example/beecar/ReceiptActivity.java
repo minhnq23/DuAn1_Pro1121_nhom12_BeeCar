@@ -172,12 +172,8 @@ public class ReceiptActivity extends AppCompatActivity {
         trip.setEnd_time(receipt.getEnd_time());
         trip.setClient_id(client.getId());
         trip.setReceipt_id(receipt.getId());
-        if (stringToDate(getToday()).getTime() == stringToDate(receipt.getStart_time()).getTime()){
-            trip.setStatus_trip(1);
-        }
-        if (stringToDate(getToday()).getTime() > stringToDate(receipt.getStart_time()).getTime()){
-            trip.setStatus_trip(0);
-        }
+        trip.setStatus_trip(0);
+
 
 
         if (tripDAO.insert(trip)){

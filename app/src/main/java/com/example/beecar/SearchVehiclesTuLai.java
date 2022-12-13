@@ -136,7 +136,6 @@ public class SearchVehiclesTuLai extends AppCompatActivity {
                 adapter = new VehiclesAdapter(list,this, new ClickItemVehicles() {
                     @Override
                     public void onClickItemVehicles(Vehicles obj) {
-                        Toast.makeText(SearchVehiclesTuLai.this, "hehe", Toast.LENGTH_SHORT).show();
                         clickItem(obj,strNhan,strTra,strDiaDiem);
 
 

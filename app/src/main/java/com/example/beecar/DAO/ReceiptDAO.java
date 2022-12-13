@@ -24,7 +24,7 @@ public class ReceiptDAO {
     public ArrayList<Receipt> selectAll(){
         ArrayList<Receipt> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT*FROM tb_receipt";
+        String sql = "SELECT*FROM tb_receipt where status_receipt = 0";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
@@ -49,11 +49,39 @@ public class ReceiptDAO {
         cursor.close();
         return list;
     }
+    public ArrayList<Receipt> selectAllFull(){
+        ArrayList<Receipt> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT*FROM tb_receipt";
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                Receipt objR = new Receipt();
+                objR.setId(cursor.getInt(0));
+                objR.setName_client(cursor.getString(1));
+                objR.setName_driver(cursor.getString(2));
+                objR.setOder_time(cursor.getString(3));
+                objR.setStart_time(cursor.getString(4));
+                objR.setEnd_time(cursor.getString(5));
+                objR.setStatus_driver(cursor.getInt(6));
+                objR.setStatus(cursor.getInt(7));
+                objR.setTotal(cursor.getInt(8));
+                objR.setDia_diem(cursor.getString(9));
+                objR.setClient_id(cursor.getInt(10));
+                objR.setVehicles_id(cursor.getInt(11));
+                list.add(objR);
+                cursor.moveToNext();
+            }
+
+        }
+        cursor.close();
+        return list;
+    }
     // get cac hoa don cua 1 client
     public ArrayList<Receipt> getList(Client obj){
         ArrayList<Receipt> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId()+" and status_receipt=0";
+        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId()+" and (status_receipt=0 orstatus_receipt=2)";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
