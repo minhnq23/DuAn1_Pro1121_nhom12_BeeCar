@@ -81,7 +81,7 @@ public class ReceiptDAO {
     public ArrayList<Receipt> getList(Client obj){
         ArrayList<Receipt> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId()+" and (status_receipt=0 orstatus_receipt=2)";
+        String sql = "SELECT*FROM tb_receipt where client_id = "+obj.getId()+" and (status_receipt=0 or status_receipt=2)";
         Cursor cursor = db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
