@@ -53,6 +53,7 @@
 
                         <TextView
                             android:id="@+id/ten_xe"
+
                                 android:textColor="#FF5722"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
@@ -123,18 +124,22 @@
                             android:orientation="vertical"
                             android:layout_marginVertical="1dp"
                             >
+
                             <TextView
+                                android:textColor="#FF5722"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:paddingVertical="10dp"
                                 android:paddingLeft="15dp"
-                                android:text="Thông Tin Xe"/>
+                                android:text="Thông Tin Xe"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
                             <View
+                                android:background="#FF5722"
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="#A5A5A5"
+
                                 />
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -237,18 +242,21 @@
                     android:orientation="vertical"
                     android:layout_marginVertical="3dp"
                     >
+
                     <TextView
+                        android:textColor="#FF5722"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
                         android:paddingVertical="10dp"
                         android:paddingLeft="15dp"
-                        android:text="Hóa đơn"/>
+                        android:text="Hóa đơn mẫu"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
                     <View
+                        android:background="#FF5722"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="#A5A5A5"
+                       
                         />
                     <LinearLayout
                         android:layout_width="match_parent"
