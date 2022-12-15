@@ -17,6 +17,7 @@ import com.example.beecar.Fragment.CongViecTaiXeFragment;
 import com.example.beecar.Fragment.GioiThieuQuanLyTaiXeFragment;
 import com.example.beecar.Fragment.GioiThieuTaiXeFragment;
 import com.example.beecar.Fragment.HoatDongTaiXeFragment;
+import com.example.beecar.Fragment.HomeManagerFragment;
 import com.example.beecar.Fragment.QuanLyHoaDonFragment;
 import com.example.beecar.Fragment.QuanLyTaiXeFragment;
 import com.example.beecar.Fragment.QuanLyXeFragment;
@@ -39,11 +40,14 @@ public class NavigationQuanLy extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayoutQuanLy, toolbarquanly, R.string.navigationquanly_driver_open, R.string.navigationquanly_driver_close);
         drawerLayoutQuanLy.addDrawerListener(toggle);
         toggle.syncState();
-        ganFragDriver(new QuanLyXeFragment());
+        ganFragDriver(new HomeManagerFragment());
         navDriver.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.home:
+                            ganFragDriver(new HomeManagerFragment());
+                        break;
                     case R.id.QLHome:
                         ganFragDriver(new QuanLyHoaDonFragment());
                         break;

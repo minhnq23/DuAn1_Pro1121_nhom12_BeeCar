@@ -62,7 +62,7 @@ public class ReceiptActivity extends AppCompatActivity {
         tvIdXe = findViewById(R.id.tv_id_xe);
         tvBien = findViewById(R.id.bien_so);
         tvDayDk = findViewById(R.id.date_dk);
-        tvStatusXe = findViewById(R.id.status_xe);
+//        tvStatusXe = findViewById(R.id.status_xe);
         tvFullName = findViewById(R.id.tv_full_name_client);
         tvDayOder = findViewById(R.id.tv_date_oder);
         tvTotal = findViewById(R.id.total);
@@ -108,13 +108,13 @@ public class ReceiptActivity extends AppCompatActivity {
         tvDonGia.setText(vehicles.getPrice_date()+"/ngày");
         tvTotal.setText(obj.getTotal()+"");
 
-        if (vehicles.getVehicles_status()==2){
-            tvStatusXe.setText("Chưa có người thuê");
-            tvStatusXe.setTextColor(Color.RED);
-        }else {
-            tvStatusXe.setText("chưa có người thuê");
-            tvStatusXe.setTextColor(Color.GREEN);
-        }
+//        if (vehicles.getVehicles_status()==2){
+//            tvStatusXe.setText("Chưa có người thuê");
+//            tvStatusXe.setTextColor(Color.RED);
+//        }else {
+//            tvStatusXe.setText("chưa có người thuê");
+//            tvStatusXe.setTextColor(Color.GREEN);
+//        }
         List<Integer> listId = new ArrayList<>();
 
         findViewById(R.id.btn_dat_xe).setOnClickListener(view -> {
