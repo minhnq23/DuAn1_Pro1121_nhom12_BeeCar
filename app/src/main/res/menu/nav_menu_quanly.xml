@@ -25,11 +25,6 @@
         <item android:title="Tài khoản" >
             <menu >
                 <item
-                    android:title="Giới thiệu"
-                    android:icon="@drawable/ic_baseline_person_24"
-                    android:id="@+id/QLGioiThieu"
-                    />
-                <item
                     android:title="Thoát"
                     android:id="@+id/QLThoat"
                     android:icon="@drawable/ic_baseline_exit_to_app_24"

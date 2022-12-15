@@ -8,20 +8,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.beecar.Fragment.CongViecTaiXeFragment;
-import com.example.beecar.Fragment.GioiThieuQuanLyTaiXeFragment;
-import com.example.beecar.Fragment.GioiThieuTaiXeFragment;
-import com.example.beecar.Fragment.HoatDongTaiXeFragment;
 import com.example.beecar.Fragment.QuanLyHoaDonFragment;
 import com.example.beecar.Fragment.QuanLyTaiXeFragment;
 import com.example.beecar.Fragment.QuanLyXeFragment;
-import com.example.beecar.Fragment.ThemXeFragment;
-import com.example.beecar.Fragment.ThongKeTaiXeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class NavigationQuanLy extends AppCompatActivity {
@@ -53,13 +48,28 @@ public class NavigationQuanLy extends AppCompatActivity {
                     case R.id.QLXe:
                         ganFragDriver(new QuanLyXeFragment());
                         break;
-
-                    case R.id.QLGioiThieu:
-                        ganFragDriver(new GioiThieuQuanLyTaiXeFragment());
-                        break;
                     case R.id.QLThoat:
-                        NavigationQuanLy.this.finishAffinity();
-                        System.exit(0);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(NavigationQuanLy.this);
+                        builder.setTitle("Đăng xuất");
+                        builder.setMessage("Bạn có muốn đăng xuất ? ");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                                startActivity(new Intent(NavigationQuanLy.this, MainActivity.class));
+
+
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        // tao dialog
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
                         break;
                     default:
                         break;
