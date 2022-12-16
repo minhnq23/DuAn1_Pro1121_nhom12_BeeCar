@@ -46,6 +46,30 @@ public class DriverDAO {
         cursor.close();
         return list;
     }
+    public ArrayList<Driver> selectStatus(){
+        ArrayList<Driver> list = new ArrayList<>();
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        String sql = "SELECT*FROM tb_driver WHERE status_driver =0";
+        Cursor cursor = db.rawQuery(sql,null);
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                Driver objD = new Driver();
+                objD.setId(cursor.getInt(0));
+                objD.setUser_name(cursor.getString(1));
+                objD.setPassword(cursor.getString(2));
+                objD.setFull_name(cursor.getString(3));
+                objD.setImage_gplx(cursor.getBlob(4));
+                objD.setLuongcb(cursor.getInt(5));
+                objD.setStatus_driver(cursor.getInt(6));
+                objD.setUser_id(cursor.getInt(7));
+
+                list.add(objD);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
 
     public boolean insert(Driver objD){
         SQLiteDatabase db = myDbHelper.getWritableDatabase();

@@ -35,7 +35,7 @@ public class MyHDon_Activity extends AppCompatActivity {
         toolbarCn = findViewById(R.id.toolbar_cn);
         setSupportActionBar(toolbarCn);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Hoa don cua toi");
+        getSupportActionBar().setTitle("Hóa đơn của tôi");
         User objU = (User) getIntent().getSerializableExtra("obj");
         receiptDAOCN = new ReceiptDAO(this);
         recyclerView = findViewById(R.id.recy_hdon);

@@ -1,10 +1,16 @@
 package com.example.beecar.Adapter;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,6 +65,12 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
         holder.tvStart.setText(schedule.getStart_time());
         holder.tvEnd.setText(schedule.getEnd_time());
         holder.tvNameKH.setText(receipt.getName_client());
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInfDialog(schedule);
+            }
+        });
     }
 
     @Override
@@ -67,7 +79,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-
+        LinearLayout item;
         TextView tvDiaDiemDon;
         TextView tvStart;
         TextView tvEnd;
@@ -75,6 +87,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
+            item = itemView.findViewById(R.id.line_item);
             tvDiaDiemDon= itemView.findViewById(R.id.tv_dia_diem_don);
             tvNameKH= itemView.findViewById(R.id.tv_name_khach);
             tvStart= itemView.findViewById(R.id.tv_day_di);
@@ -83,6 +96,22 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.viewholder>{
 
 
         }
+    }
+    public void showInfDialog(Schedule schedule) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater layoutInflater =((Activity)context).getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.dialog_show_inf_tai_xe, null);
+        EditText ed_name_kh = view.findViewById(R.id.ed_name_clientdr);
+        EditText ed_location = view.findViewById(R.id.ed_location_dr);
+        EditText ed_date_start = view.findViewById(R.id.ed_date_startdr);
+        EditText ed_date_end = view.findViewById(R.id.ed_date_enddr);
+        ed_name_kh.setText(receipt.getName_client());
+        ed_location.setText(receipt.getDia_diem());
+        ed_date_start.setText(receipt.getStart_time());
+        ed_date_end.setText(receipt.getEnd_time());
+        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
     private String getToday(){
         return  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());

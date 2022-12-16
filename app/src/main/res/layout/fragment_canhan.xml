@@ -184,7 +184,7 @@
                     android:layout_height="30dp"
 
                     android:layout_marginLeft="20dp"
-                    android:text="hóa đơn đã hủy"
+                    android:text="Hóa đơn đã hủy"
                     android:textStyle="bold"
                     android:textSize="22dp" />
 

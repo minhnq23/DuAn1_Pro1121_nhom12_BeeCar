@@ -100,7 +100,7 @@ public class HomeClient extends AppCompatActivity {
                 count = 0;
             }
         },3000);
-        Toast.makeText(this, "vuốt thêm lần nữa để thoát", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Vuốt thêm lần nữa để thoát", Toast.LENGTH_SHORT).show();
         if (count == 2) {
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
