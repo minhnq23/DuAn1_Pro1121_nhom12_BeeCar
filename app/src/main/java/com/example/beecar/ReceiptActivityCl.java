@@ -108,7 +108,7 @@ public class ReceiptActivityCl extends AppCompatActivity {
         spinner = findViewById(R.id.spin);
         driverDAO = new DriverDAO(this);
         driverList.clear();
-        driverList.addAll(driverDAO.selectAll());
+        driverList.addAll(driverDAO.selectStatus());
 //        driverList.removeAll();
 
         spinAdapter = new SpinAdapter(driverList,this);
