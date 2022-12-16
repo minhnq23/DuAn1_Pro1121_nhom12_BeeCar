@@ -63,7 +63,19 @@ public class VehiclesManagerAdapter extends RecyclerView.Adapter<VehiclesManager
         holder.tvName.setOnClickListener(view ->{
             showDialogUpdateThongTinXe(obj);
         });
+        holder.item.setOnClickListener(view -> {
+            showOneVehicles(obj);
+        });
 
+    }
+
+    private void showOneVehicles(Vehicles vehicles) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Thông tin.");
+        Vehicles new_gv =  vehiclesDAO.selectOne(vehicles.getId());
+        builder.setMessage(new_gv.toString());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

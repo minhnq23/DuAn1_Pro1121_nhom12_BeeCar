@@ -27,6 +27,29 @@ public class VehiclesDAO {
 
 
 
+    public Vehicles selectOne(int id){
+        SQLiteDatabase db = myDbHelper.getReadableDatabase();
+        Vehicles vehicles = new Vehicles();
+        String[] columns = new String[]{"*"};
+        Cursor c = db.query(Vehicles.TB_name, columns,null,null,null,null,null);
+        if (c.moveToFirst()){
+            vehicles.setId(c.getInt(0));
+            vehicles.setImage(c.getBlob(1));
+            vehicles.setName_car(c.getString(2));
+            vehicles.setBien_ks(c.getString(3));
+            vehicles.setCount_muon(c.getInt(4));
+            vehicles.setPrice_time(c.getInt(5));
+            vehicles.setPrice_date(c.getInt(6));
+            vehicles.setDay_bd(c.getString(7));
+            vehicles.setDay_dk(c.getString(8));
+            vehicles.setVehicles_status(c.getInt(9));
+            vehicles.setId_category(c.getInt(10));
+
+        }
+
+        return  vehicles;
+    }
+
     public ArrayList<Vehicles> selectAll(){
         ArrayList<Vehicles> list = new ArrayList<>();
         SQLiteDatabase db = myDbHelper.getReadableDatabase();

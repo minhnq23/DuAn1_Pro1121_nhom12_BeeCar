@@ -1,5 +1,7 @@
 package com.example.beecar.Model;
 
+import java.util.Arrays;
+
 public class Vehicles {
     int id;
     byte[] image;
@@ -119,5 +121,18 @@ public class Vehicles {
 
     public void setId_category(int id_category) {
         this.id_category = id_category;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "id: " + id +'\n' +
+                "Tên xe: " + name_car + '\n' +
+                "Biển kiểm soát: " + bien_ks + '\n' +
+                "Số lần cho thuê: " + count_muon + '\n' +
+                "Giá theo ngày: " + price_date +'\n' +
+                "Ngày bảo dưỡng: " + day_bd  +'\n' +
+                "Ngày đăng kiểm: " + day_dk +'\n'
+                ;
     }
 }

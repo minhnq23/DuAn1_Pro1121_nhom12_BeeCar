@@ -247,7 +247,7 @@
                         android:textStyle="bold"
                         android:paddingVertical="10dp"
                         android:paddingLeft="15dp"
-                        android:text="Hóa đơn"/>
+                        android:text="Hóa đơn mẫu"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
